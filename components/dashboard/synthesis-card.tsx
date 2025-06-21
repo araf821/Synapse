@@ -1,6 +1,11 @@
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
+import {
+  Tooltip,
+  TooltipTrigger,
+  TooltipContent,
+} from "@/components/ui/tooltip";
 import { Synthesis } from "@/server/db/schema";
 import {
   Calendar,
@@ -66,40 +71,76 @@ export function SynthesisCard({ synthesis }: SynthesisCardProps) {
       (synthesis.rawText.length > 120 ? "..." : "")
     : "No content yet...";
 
+  // Check if title is long and needs tooltip
+  const titleCharLimit = 25;
+  const isTitleLong = synthesis.title.length > titleCharLimit;
+
   return (
     <Card className="group relative overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-200 hover:border-border hover:bg-card/80 hover:shadow-md">
-      <CardHeader className="pb-3">
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0 flex-1">
-            <h3 className="truncate font-semibold text-foreground transition-colors group-hover:text-primary">
-              {synthesis.title}
-            </h3>
-            <div className="mt-1 flex items-center gap-2 text-xs text-muted-foreground">
-              <Calendar className="size-3" />
-              <span>
-                Created{" "}
-                {formatDistanceToNow(new Date(synthesis.createdAt), {
-                  addSuffix: true,
-                })}
-              </span>
-            </div>
+      <CardHeader>
+        <div className="flex gap-4 overflow-hidden">
+          <div className="min-w-0 flex-1 overflow-hidden">
+            {isTitleLong ? (
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <h3 className="cursor-help truncate font-semibold text-foreground transition-colors group-hover:text-primary">
+                    {synthesis.title}
+                  </h3>
+                </TooltipTrigger>
+                <TooltipContent side="top" className="max-w-xs">
+                  <p className="text-xs">{synthesis.title}</p>
+                </TooltipContent>
+              </Tooltip>
+            ) : (
+              <h3 className="truncate font-semibold text-foreground transition-colors group-hover:text-primary">
+                {synthesis.title}
+              </h3>
+            )}
           </div>
 
-          <Badge
-            variant="secondary"
-            className={`flex items-center gap-1 ${stageInfo.color}`}
-          >
-            {stageInfo.icon}
-            {stageInfo.label}
-          </Badge>
+          <div className="flex shrink-0 flex-col items-end">
+            <Badge
+              variant="secondary"
+              className={`flex items-center gap-1.5 ${stageInfo.color}`}
+            >
+              {stageInfo.icon}
+              {stageInfo.label}
+            </Badge>
+          </div>
+        </div>
+
+        <div className="mt-2 flex items-center justify-between text-xs text-muted-foreground">
+          <div className="flex items-center gap-2">
+            <Calendar className="size-3" />
+            <span className="truncate max-xl:max-w-32">
+              Created{" "}
+              {formatDistanceToNow(new Date(synthesis.createdAt), {
+                addSuffix: true,
+              })}
+            </span>
+          </div>
+          <span className="text-right">{stageInfo.description}</span>
         </div>
       </CardHeader>
 
-      <CardContent className="pt-0">
-        <p className="mb-4 line-clamp-3 text-sm text-muted-foreground">
-          {contentPreview}
-        </p>
+      {/* Subtle divider */}
+      <div className="h-px bg-border" />
 
+      <CardContent className="flex h-full flex-col">
+        {/* Content preview section - takes up all available space */}
+        <div className="mb-4 flex-1">
+          <p className="line-clamp-4 text-sm leading-relaxed whitespace-pre-wrap text-muted-foreground">
+            {contentPreview}
+          </p>
+        </div>
+
+        {/* Spacer to push footer down */}
+        <div className="flex-grow" />
+
+        {/* Divider */}
+        <div className="mb-4 h-px bg-border" />
+
+        {/* Footer section with metadata and action - stays at bottom */}
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2 text-xs text-muted-foreground">
             <Clock className="size-3" />
@@ -117,10 +158,6 @@ export function SynthesisCard({ synthesis }: SynthesisCardProps) {
               <ArrowRight className="ml-1 size-3" />
             </Link>
           </Button>
-        </div>
-
-        <div className="mt-3 text-xs text-muted-foreground">
-          {stageInfo.description}
         </div>
       </CardContent>
     </Card>
