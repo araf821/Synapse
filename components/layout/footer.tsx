@@ -33,7 +33,7 @@ const footerSections = [
 
 export function Footer() {
   return (
-    <footer className="relative border-t border-border/50 bg-muted/20">
+    <footer className="relative border-t border-border/50 bg-muted/50">
       {/* Subtle background elements */}
       <div className="absolute inset-0 overflow-hidden">
         <div className="absolute top-0 left-1/4 h-32 w-32 rounded-full bg-primary/3 blur-2xl"></div>

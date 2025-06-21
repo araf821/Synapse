@@ -58,7 +58,7 @@ export function MobileMenu({ user, open, onOpenChange }: MobileMenuProps) {
         {/* Scrollable content */}
         <div className="flex h-full flex-col">
           {/* User info section */}
-          <div className="border-b border-border/40 bg-muted/20 px-6 py-6">
+          <div className="border-b border-border/40 bg-muted/50 px-6 py-6">
             <div className="flex items-center space-x-4">
               <div className="flex size-12 items-center justify-center rounded-full bg-background">
                 {user.image ? (

@@ -124,7 +124,7 @@ export function ChallengeInterface({
             </CardTitle>
           </CardHeader>
           <CardContent>
-            <div className="rounded-lg bg-muted/20 p-4 text-muted-foreground">
+            <div className="rounded-lg bg-muted/50 p-4 text-muted-foreground">
               <p className="text-sm leading-relaxed whitespace-pre-wrap">
                 {synthesis.rawText || "No content available"}
               </p>
@@ -199,7 +199,7 @@ export function ChallengeInterface({
             </CardHeader>
             <CardContent className="space-y-4">
               {/* AI Generated Question */}
-              <div className="rounded-lg border bg-muted/20 p-4">
+              <div className="rounded-lg border bg-muted/50 p-4">
                 <p className="text-sm leading-relaxed font-medium text-foreground">
                   {challenge.aiGeneratedQuestion}
                 </p>

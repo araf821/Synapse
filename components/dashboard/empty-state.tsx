@@ -4,7 +4,7 @@ import Link from "next/link";
 
 export function EmptyState() {
   return (
-    <div className="flex min-h-[500px] flex-col items-center justify-center rounded-lg border-2 border-dashed border-border/50 bg-muted/20 p-8 text-center sm:p-12 md:min-h-[400px] md:p-16">
+    <div className="flex min-h-[500px] flex-col items-center justify-center rounded-lg border-2 border-dashed border-border/50 bg-muted/50 p-8 text-center sm:p-12 md:min-h-[400px] md:p-16">
       <div className="mx-auto mb-8 flex size-24 items-center justify-center rounded-full bg-primary/10">
         <Brain className="size-12 text-primary" />
       </div>

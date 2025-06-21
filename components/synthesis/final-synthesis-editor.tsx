@@ -35,6 +35,7 @@ import {
   completeSynthesisAndRedirect,
 } from "@/server/actions/synthesis";
 import { useRouter } from "next/navigation";
+import { SynapseIcon } from "../ui/synapse-icon";
 
 const finalSynthesisSchema = z.object({
   content: z
@@ -142,7 +143,7 @@ export function FinalSynthesisEditor({
                 </div>
               </AccordionTrigger>
               <AccordionContent>
-                <div className="rounded-lg bg-muted/20 p-4">
+                <div className="rounded-lg bg-muted/50 p-4">
                   <p className="text-sm leading-relaxed whitespace-pre-wrap">
                     {synthesis.rawText || "No original content available"}
                   </p>
@@ -167,7 +168,7 @@ export function FinalSynthesisEditor({
                       <h4 className="mb-2 text-sm font-medium">
                         AI Challenge:
                       </h4>
-                      <div className="rounded-lg bg-muted/20 p-3">
+                      <div className="rounded-lg bg-muted/50 p-3">
                         <p className="text-sm text-muted-foreground">
                           {challenge.aiGeneratedQuestion}
                         </p>
@@ -177,7 +178,7 @@ export function FinalSynthesisEditor({
                       <h4 className="mb-2 text-sm font-medium">
                         Your Response:
                       </h4>
-                      <div className="rounded-lg bg-muted/20 p-3">
+                      <div className="rounded-lg bg-muted/50 p-3">
                         <p className="text-sm leading-relaxed whitespace-pre-wrap">
                           {challenge.userResponse || "No response provided"}
                         </p>
@@ -274,7 +275,7 @@ export function FinalSynthesisEditor({
         <CardHeader>
           <CardTitle className="text-lg">Synthesis Guidelines</CardTitle>
         </CardHeader>
-        <CardContent className="space-y-3">
+        <CardContent>
           <div className="grid gap-3 sm:grid-cols-2">
             <div className="flex items-center gap-2 text-sm">
               <Badge variant="outline" className="text-xs">
@@ -305,13 +306,13 @@ export function FinalSynthesisEditor({
       </Card>
 
       {/* Help Text */}
-      <div className="text-center text-sm text-muted-foreground">
-        <p>
-          Your final synthesis should demonstrate how your thinking has evolved
-          through the challenge process. Show how you've addressed weaknesses
-          and strengthened your argument.
-        </p>
-      </div>
+      <p className="text-center text-sm text-balance text-muted-foreground">
+        Your final synthesis should demonstrate how your thinking has evolved
+        through the challenge process. Show how you've addressed weaknesses and
+        strengthened your argument.
+      </p>
+
+      <SynapseIcon className="mx-auto size-12 text-primary" />
     </div>
   );
 }

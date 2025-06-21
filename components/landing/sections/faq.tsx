@@ -13,7 +13,7 @@ export function FAQ() {
   return (
     <section
       id="faq"
-      className="relative overflow-hidden bg-muted/20 px-4 py-24 sm:px-6 sm:py-32 lg:px-8"
+      className="relative overflow-hidden bg-muted/50 px-4 py-24 sm:px-6 sm:py-32 lg:px-8"
     >
       {/* Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
