@@ -1,5 +1,6 @@
 import "server-only";
-import { getProModel } from "./models";
+import { generateWithSearch } from "./models";
+import { Type } from "@google/genai";
 
 // Agent 2A Output Type
 export interface ExternalContradictionOutput {
@@ -31,16 +32,12 @@ export async function externalContradictionAgent(
     throw new Error("Primary claim input is required");
   }
 
-  const model = getProModel();
-
-  // For MVP, we'll use Gemini Pro's built-in search capabilities
-  // In production, this would integrate with Google Search API or Tavily API
   const prompt = `
 You are a research expert tasked with finding credible counter-evidence to challenge an argument.
 
 Your task:
-1. Analyze the primary claim and identify potential counter-arguments
-2. Find the strongest opposing evidence from credible sources
+1. Search for and analyze credible sources that contradict the primary claim
+2. Find the strongest opposing evidence from academic studies, reports, or expert opinions
 3. Synthesize findings into a concise, accessible summary
 4. Assess source credibility and type
 
@@ -54,19 +51,46 @@ Focus on:
 - Recent, relevant findings from credible sources
 - Evidence that directly contradicts or weakens the claim
 - Maintain academic rigor while ensuring readability
-
-Respond with valid JSON only:
-{
-  "counterArgument": "Concise summary of strongest opposing evidence (2-3 sentences)",
-  "sourceType": "Type of source (study, report, analysis, expert opinion, etc.)",
-  "credibilityLevel": "Assessment of source reliability (high, medium, low)",
-  "searchQueries": ["search query 1", "search query 2", "search query 3"]
-}
 `;
 
+  const responseSchema = {
+    type: Type.OBJECT,
+    properties: {
+      counterArgument: {
+        type: Type.STRING,
+      },
+      sourceType: {
+        type: Type.STRING,
+      },
+      credibilityLevel: {
+        type: Type.STRING,
+      },
+      searchQueries: {
+        type: Type.ARRAY,
+        items: {
+          type: Type.STRING,
+        },
+      },
+    },
+    propertyOrdering: [
+      "counterArgument",
+      "sourceType",
+      "credibilityLevel",
+      "searchQueries",
+    ],
+  };
+
   try {
-    const result = await model.generateContent(prompt);
-    const response = result.response.text();
+    // Use Google Search to find counter-evidence
+    const result = await generateWithSearch(prompt, {
+      responseMimeType: "application/json",
+      responseSchema,
+    });
+    const response = result.text;
+
+    if (!response) {
+      throw new Error("No response received from AI model");
+    }
 
     // Parse and validate JSON response
     const parsed = JSON.parse(response);

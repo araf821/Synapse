@@ -1,5 +1,6 @@
 import "server-only";
-import { getFlashModel } from "./models";
+import { generateStructuredWithFlash } from "./models";
+import { Type } from "@google/genai";
 
 // Agent 2B Output Type
 export interface InternalCritiqueOutput {
@@ -33,8 +34,6 @@ export async function internalCritiqueAgent(
     throw new Error("Raw text input is required");
   }
 
-  const model = getFlashModel();
-
   const prompt = `
 You are a logical analysis expert. Analyze the following argument for internal weaknesses, logical flaws, and blind spots.
 
@@ -63,18 +62,39 @@ Analyze step-by-step:
 2. Which assumption is most questionable or context-dependent?
 3. What important perspective or consideration is missing?
 
-Respond with valid JSON only:
-{
-  "logicalFlaw": "Primary reasoning weakness identified (be specific and constructive)",
-  "vulnerableAssumption": "Most questionable assumption that could undermine the argument",
-  "blindSpot": "Significant overlooked consideration or alternative perspective",
-  "flawType": "Category of logical issue (fallacy, assumption, perspective, evidence)"
-}
 `;
 
+  const responseSchema = {
+    type: Type.OBJECT,
+    properties: {
+      logicalFlaw: {
+        type: Type.STRING,
+      },
+      vulnerableAssumption: {
+        type: Type.STRING,
+      },
+      blindSpot: {
+        type: Type.STRING,
+      },
+      flawType: {
+        type: Type.STRING,
+      },
+    },
+    propertyOrdering: [
+      "logicalFlaw",
+      "vulnerableAssumption",
+      "blindSpot",
+      "flawType",
+    ],
+  };
+
   try {
-    const result = await model.generateContent(prompt);
-    const response = result.response.text();
+    const result = await generateStructuredWithFlash(prompt, responseSchema);
+    const response = result.text;
+
+    if (!response) {
+      throw new Error("No response received from AI model");
+    }
 
     // Parse and validate JSON response
     const parsed = JSON.parse(response);

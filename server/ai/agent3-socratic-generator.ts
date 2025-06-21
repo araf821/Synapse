@@ -1,6 +1,7 @@
 import "server-only";
 
-import { getFlashModel } from "./models";
+import { generateStructuredWithFlash } from "./models";
+import { Type } from "@google/genai";
 import { ExternalContradictionOutput } from "./agent2a-external-contradiction";
 import { InternalCritiqueOutput } from "./agent2b-internal-critique";
 
@@ -44,20 +45,18 @@ export async function socraticGeneratorAgent(
     throw new Error("All challenge inputs are required");
   }
 
-  const model = getFlashModel();
-
   const prompt = `
 You are a Socratic dialogue expert. Transform analytical findings into engaging, thought-provoking questions that challenge thinking without being hostile.
 
 Your task is to create exactly 3 challenge questions using these templates:
 
-CHALLENGE 1 - The Counter-Argument:
+CHALLENGE 1 - The Counter-Argument (External):
 Template: "A recent [SOURCE_TYPE] argues the opposite. It says [COUNTER_ARGUMENT]. How do you defend your position against this new evidence?"
 
-CHALLENGE 2 - The Hidden Assumption:
+CHALLENGE 2 - The Hidden Assumption (Internal):
 Template: "Your argument appears to rest on the assumption that [VULNERABLE_ASSUMPTION]. Is this always true? What happens to your argument if this assumption is false?"
 
-CHALLENGE 3 - The Devil's Advocate:
+CHALLENGE 3 - The Devil's Advocate (Self-Reflection):
 Template: "If you had to argue against your own main point, what would be the strongest single argument you would use?"
 
 Input Data:
@@ -79,39 +78,56 @@ Requirements:
 - Each question should be 1-2 sentences maximum
 - Maintain intellectual honesty - no "gotcha" questions
 - Include context for the counter-argument challenge
-
-Respond with valid JSON only:
-{
-  "challengeCards": [
-    {
-      "id": "counter-argument",
-      "title": "The Counter-Argument",
-      "question": "Your formatted challenge question here",
-      "type": "counter-argument",
-      "context": "Brief context about the counter-evidence source",
-      "order": 1
-    },
-    {
-      "id": "hidden-assumption",
-      "title": "The Hidden Assumption",
-      "question": "Your formatted challenge question here",
-      "type": "hidden-assumption",
-      "order": 2
-    },
-    {
-      "id": "devils-advocate",
-      "title": "The Devil's Advocate",
-      "question": "Your formatted challenge question here",
-      "type": "devils-advocate",
-      "order": 3
-    }
-  ]
-}
 `;
 
+  const responseSchema = {
+    type: Type.OBJECT,
+    properties: {
+      challengeCards: {
+        type: Type.ARRAY,
+        items: {
+          type: Type.OBJECT,
+          properties: {
+            id: {
+              type: Type.STRING,
+            },
+            title: {
+              type: Type.STRING,
+            },
+            question: {
+              type: Type.STRING,
+            },
+            type: {
+              type: Type.STRING,
+            },
+            context: {
+              type: Type.STRING,
+            },
+            order: {
+              type: Type.NUMBER,
+            },
+          },
+          propertyOrdering: [
+            "id",
+            "title",
+            "question",
+            "type",
+            "context",
+            "order",
+          ],
+        },
+      },
+    },
+    propertyOrdering: ["challengeCards"],
+  };
+
   try {
-    const result = await model.generateContent(prompt);
-    const response = result.response.text();
+    const result = await generateStructuredWithFlash(prompt, responseSchema);
+    const response = result.text;
+
+    if (!response) {
+      throw new Error("No response received from AI model");
+    }
 
     // Parse and validate JSON response
     const parsed = JSON.parse(response);

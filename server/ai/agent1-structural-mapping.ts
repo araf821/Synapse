@@ -1,5 +1,6 @@
 import "server-only";
-import { getFlashModel } from "./models";
+import { generateStructuredWithFlash } from "./models";
+import { Type } from "@google/genai";
 
 // Agent 1 Output Type
 export interface StructuralMappingOutput {
@@ -29,8 +30,6 @@ export async function structuralMappingAgent(
     throw new Error("Raw text input is required");
   }
 
-  const model = getFlashModel();
-
   const prompt = `
 You are a structural analysis expert. Analyze the following text and extract its core structure without altering or interpreting the content.
 
@@ -43,18 +42,37 @@ Focus on claims that are most defensible/attackable. Preserve the user's exact w
 
 Text to analyze:
 ${rawText}
-
-Respond with valid JSON only:
-{
-  "claims": ["exact verbatim claim 1", "exact verbatim claim 2", "exact verbatim claim 3"],
-  "assumptions": ["identified unstated assumption 1", "identified unstated assumption 2"],
-  "primaryThesis": "user's main overarching argument"
-}
 `;
 
+  const responseSchema = {
+    type: Type.OBJECT,
+    properties: {
+      claims: {
+        type: Type.ARRAY,
+        items: {
+          type: Type.STRING,
+        },
+      },
+      assumptions: {
+        type: Type.ARRAY,
+        items: {
+          type: Type.STRING,
+        },
+      },
+      primaryThesis: {
+        type: Type.STRING,
+      },
+    },
+    propertyOrdering: ["claims", "assumptions", "primaryThesis"],
+  };
+
   try {
-    const result = await model.generateContent(prompt);
-    const response = result.response.text();
+    const result = await generateStructuredWithFlash(prompt, responseSchema);
+    const response = result.text;
+
+    if (!response) {
+      throw new Error("No response received from AI model");
+    }
 
     // Parse and validate JSON response
     const parsed = JSON.parse(response);
