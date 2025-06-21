@@ -12,22 +12,25 @@ interface StatCardProps {
   value: number;
   icon: React.ReactNode;
   description: string;
-  color: string;
 }
 
-function StatCard({ title, value, icon, description, color }: StatCardProps) {
+function StatCard({ title, value, icon, description }: StatCardProps) {
   return (
-    <Card className="relative overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-200 hover:border-border hover:bg-card/80">
-      <CardContent className="p-6">
+    <Card className="relative overflow-hidden border-border/50 bg-card/50 py-4 backdrop-blur-sm transition-all duration-200 hover:border-border hover:bg-card/80">
+      <CardContent className="p-0 px-4">
         <div className="flex items-center justify-between">
-          <div>
-            <p className="text-sm font-medium text-muted-foreground">{title}</p>
-            <p className="text-3xl font-bold tracking-tight text-foreground">
+          <div className="flex-1">
+            <div className="mb-2 flex items-center gap-2">
+              {icon}
+              <h3 className="text-sm font-medium text-foreground">{title}</h3>
+            </div>
+            <p className="text-2xl font-bold tracking-tight text-foreground">
               {value}
             </p>
-            <p className="text-xs text-muted-foreground">{description}</p>
+            <p className="mt-0.5 text-xs text-muted-foreground">
+              {description}
+            </p>
           </div>
-          <div className={`rounded-full p-3 ${color}`}>{icon}</div>
         </div>
       </CardContent>
     </Card>
@@ -51,7 +54,6 @@ export function DashboardStats({
         value={totalSyntheses}
         icon={<Brain className="size-6 text-blue-600" />}
         description="All time"
-        color="bg-blue-100 dark:bg-blue-900/20"
       />
 
       <StatCard
@@ -59,7 +61,6 @@ export function DashboardStats({
         value={completedSyntheses}
         icon={<CheckCircle className="size-6 text-green-600" />}
         description="Finished syntheses"
-        color="bg-green-100 dark:bg-green-900/20"
       />
 
       <StatCard
@@ -67,7 +68,6 @@ export function DashboardStats({
         value={inProgressSyntheses}
         icon={<Clock className="size-6 text-amber-600" />}
         description="Active syntheses"
-        color="bg-amber-100 dark:bg-amber-900/20"
       />
 
       <StatCard
@@ -75,7 +75,6 @@ export function DashboardStats({
         value={completionRate}
         icon={<Target className="size-6 text-purple-600" />}
         description="Success percentage"
-        color="bg-purple-100 dark:bg-purple-900/20"
       />
     </div>
   );

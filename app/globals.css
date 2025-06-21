@@ -162,6 +162,8 @@
   }
   body {
     @apply bg-background text-foreground selection:bg-primary selection:text-zinc-900;
+    /* Always reserve space for scrollbar to prevent content shift */
+    overflow-y: scroll;
   }
 }
 

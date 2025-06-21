@@ -14,6 +14,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Button } from "../ui/button";
+import { dashboardNavigation } from "@/config/navigation";
 
 interface DashboardNavbarProps {
   user: User;
@@ -29,18 +30,21 @@ function NavLink({
   isActive?: boolean;
 }) {
   return (
-    <Link
-      href={href}
-      className={`group relative px-3 py-2 text-sm font-medium transition-colors duration-200 ${
-        isActive
-          ? "text-primary"
-          : "text-muted-foreground hover:text-foreground"
-      }`}
-    >
-      {children}
+    <Link href={href} className="group relative px-2 py-2">
+      <span
+        className={`text-sm font-medium transition-colors duration-200 ${
+          isActive
+            ? "text-primary"
+            : "text-muted-foreground group-hover:text-foreground"
+        }`}
+      >
+        {children}
+      </span>
       <div
-        className={`absolute bottom-0 left-1/2 h-0.5 -translate-x-1/2 rounded-full bg-primary transition-all duration-300 ${
-          isActive ? "w-full" : "w-0 group-hover:w-full"
+        className={`absolute bottom-0 left-1/2 h-0.5 -translate-x-1/2 rounded-full transition-all duration-300 ${
+          isActive
+            ? "w-full bg-primary"
+            : "w-0 bg-primary/25 group-hover:w-full"
         }`}
       />
     </Link>
@@ -63,13 +67,16 @@ export function DashboardNavbar({ user }: DashboardNavbarProps) {
           </Link>
 
           {/* Navigation Links - Center */}
-          <nav className="hidden items-center space-x-6 md:flex">
-            <NavLink href="/dashboard" isActive={pathname === "/dashboard"}>
-              Dashboard
-            </NavLink>
-            <NavLink href="/pricing" isActive={pathname === "/pricing"}>
-              Pricing
-            </NavLink>
+          <nav className="hidden items-center space-x-8 md:flex">
+            {dashboardNavigation.map(link => (
+              <NavLink
+                key={link.href}
+                href={link.href}
+                isActive={pathname === link.href}
+              >
+                {link.label}
+              </NavLink>
+            ))}
           </nav>
 
           {/* Action Buttons & User - Right */}
