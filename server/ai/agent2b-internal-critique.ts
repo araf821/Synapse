@@ -62,7 +62,15 @@ Analyze step-by-step:
 2. Which assumption is most questionable or context-dependent?
 3. What important perspective or consideration is missing?
 
-`;
+IMPORTANT: You must respond with valid JSON in exactly this format:
+{
+  "logicalFlaw": "Description of the primary logical weakness",
+  "vulnerableAssumption": "The most questionable assumption",
+  "blindSpot": "An important overlooked consideration",
+  "flawType": "Name of the logical fallacy or reasoning error"
+}
+
+Ensure all fields are strings and the JSON is properly formatted.`;
 
   const responseSchema = {
     type: Type.OBJECT,

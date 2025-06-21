@@ -78,7 +78,38 @@ Requirements:
 - Each question should be 1-2 sentences maximum
 - Maintain intellectual honesty - no "gotcha" questions
 - Include context for the counter-argument challenge
-`;
+
+CRITICAL: You must respond with exactly this JSON structure:
+{
+  "challengeCards": [
+    {
+      "id": "counter-argument",
+      "title": "The Counter-Argument",
+      "question": "Your counter-argument question here",
+      "type": "counter-argument",
+      "context": "Context about the source and evidence",
+      "order": 1
+    },
+    {
+      "id": "hidden-assumption",
+      "title": "The Hidden Assumption",
+      "question": "Your assumption challenge question here",
+      "type": "hidden-assumption",
+      "context": "Context about the assumption",
+      "order": 2
+    },
+    {
+      "id": "devils-advocate",
+      "title": "The Devil's Advocate",
+      "question": "Your self-reflection question here",
+      "type": "devils-advocate",
+      "context": "Context for self-reflection",
+      "order": 3
+    }
+  ]
+}
+
+The id and type fields MUST be exactly: "counter-argument", "hidden-assumption", or "devils-advocate".`;
 
   const responseSchema = {
     type: Type.OBJECT,

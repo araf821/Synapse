@@ -14,28 +14,23 @@ export default async function SynthesisPage({ params }: SynthesisPageProps) {
     redirect("/");
   }
 
-  try {
-    const result = await getSynthesis(id);
+  const result = await getSynthesis(id);
 
-    if (!result.success || !result.synthesis) {
-      redirect("/dashboard");
-    }
-
-    const { synthesis } = result;
-
-    // Redirect to the appropriate stage based on synthesis state
-    switch (synthesis.stage) {
-      case "brain_dump":
-        redirect(`/synthesis/${id}/stage1`);
-      case "gauntlet":
-        redirect(`/synthesis/${id}/stage2`);
-      case "synthesis":
-        redirect(`/synthesis/${id}/stage3`);
-      default:
-        redirect(`/synthesis/${id}/stage1`);
-    }
-  } catch (error) {
-    console.error("Error fetching synthesis:", error);
+  if (!result.success || !result.synthesis) {
     redirect("/dashboard");
+  }
+
+  const { synthesis } = result;
+
+  // Redirect to the appropriate stage based on synthesis state
+  switch (synthesis.stage) {
+    case "brain_dump":
+      redirect(`/synthesis/${id}/stage1`);
+    case "gauntlet":
+      redirect(`/synthesis/${id}/stage2`);
+    case "synthesis":
+      redirect(`/synthesis/${id}/stage3`);
+    default:
+      redirect(`/synthesis/${id}/stage1`);
   }
 }

@@ -52,15 +52,19 @@ export async function generateWithPro(contents: string, config?: any) {
 /**
  * Generate content with Gemini 2.5 Flash + Google Search
  * Used by: Agent 2A (External Contradiction) for web search capabilities
+ * Note: Structured JSON output (responseMimeType) is not supported with search tools
  */
 export async function generateWithSearch(contents: string, config?: any) {
   const groundingTool = {
     googleSearch: {},
   };
 
+  // Remove structured output config when using search tools (API limitation)
+  const { responseMimeType, responseSchema, ...otherConfig } = config || {};
+
   const searchConfig = {
     tools: [groundingTool],
-    ...config,
+    ...otherConfig,
   };
 
   return await ai.models.generateContent({

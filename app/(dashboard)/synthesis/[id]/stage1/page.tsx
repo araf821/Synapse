@@ -17,44 +17,39 @@ export default async function Stage1Page({ params }: Stage1PageProps) {
     redirect("/");
   }
 
-  try {
-    const result = await getSynthesis(id);
+  const result = await getSynthesis(id);
 
-    if (!result.success || !result.synthesis) {
-      redirect("/dashboard");
-    }
-
-    const { synthesis } = result;
-
-    // If synthesis is beyond brain dump stage, redirect to appropriate stage
-    if (synthesis.stage === "gauntlet") {
-      redirect(`/synthesis/${id}/stage2`);
-    }
-    if (synthesis.stage === "synthesis") {
-      redirect(`/synthesis/${id}/stage3`);
-    }
-
-    return (
-      <div className="mx-auto max-w-4xl px-6 py-8 sm:px-8 lg:px-10">
-        <StageHeader
-          stage={1}
-          title="Brain Dump"
-          description="Write down your thoughts freely. No external sources, no research - just your authentic thinking on the topic."
-          icon={<Brain className="size-6" />}
-          synthesisId={id}
-          synthesisTitle={synthesis.title}
-        />
-
-        <div className="mt-8">
-          <BrainDumpEditor
-            synthesisId={id}
-            initialContent={synthesis.rawText || ""}
-          />
-        </div>
-      </div>
-    );
-  } catch (error) {
-    console.error("Error loading Stage 1:", error);
+  if (!result.success || !result.synthesis) {
     redirect("/dashboard");
   }
+
+  const { synthesis } = result;
+
+  // If synthesis is beyond brain dump stage, redirect to appropriate stage
+  if (synthesis.stage === "gauntlet") {
+    redirect(`/synthesis/${id}/stage2`);
+  }
+  if (synthesis.stage === "synthesis") {
+    redirect(`/synthesis/${id}/stage3`);
+  }
+
+  return (
+    <div className="mx-auto max-w-4xl px-6 py-8 sm:px-8 lg:px-10">
+      <StageHeader
+        stage={1}
+        title="Brain Dump"
+        description="Write down your thoughts freely. No external sources, no research - just your authentic thinking on the topic."
+        icon={<Brain className="size-6" />}
+        synthesisId={id}
+        synthesisTitle={synthesis.title}
+      />
+
+      <div className="mt-8">
+        <BrainDumpEditor
+          synthesisId={id}
+          initialContent={synthesis.rawText || ""}
+        />
+      </div>
+    </div>
+  );
 }

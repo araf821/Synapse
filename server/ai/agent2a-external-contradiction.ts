@@ -51,7 +51,16 @@ Focus on:
 - Recent, relevant findings from credible sources
 - Evidence that directly contradicts or weakens the claim
 - Maintain academic rigor while ensuring readability
-`;
+
+IMPORTANT: Provide your response in the following JSON format:
+{
+  "counterArgument": "A concise summary of the strongest counter-evidence found",
+  "sourceType": "Type of source (e.g., 'Academic Study', 'Expert Opinion', 'Research Report')",
+  "credibilityLevel": "High/Medium/Low based on source authority and methodology", 
+  "searchQueries": ["query1", "query2", "query3"]
+}
+
+Ensure the JSON is valid and properly formatted.`;
 
   const responseSchema = {
     type: Type.OBJECT,
@@ -81,19 +90,30 @@ Focus on:
   };
 
   try {
-    // Use Google Search to find counter-evidence
-    const result = await generateWithSearch(prompt, {
-      responseMimeType: "application/json",
-      responseSchema,
-    });
+    // Use Google Search to find counter-evidence (structured config removed due to API limitation)
+    const result = await generateWithSearch(prompt);
     const response = result.text;
 
     if (!response) {
       throw new Error("No response received from AI model");
     }
 
+    // Extract JSON from response (handle potential markdown formatting)
+    let jsonText = response.trim();
+    if (jsonText.includes("```json")) {
+      const match = jsonText.match(/```json\s*([\s\S]*?)\s*```/);
+      if (match) {
+        jsonText = match[1];
+      }
+    } else if (jsonText.includes("```")) {
+      const match = jsonText.match(/```\s*([\s\S]*?)\s*```/);
+      if (match) {
+        jsonText = match[1];
+      }
+    }
+
     // Parse and validate JSON response
-    const parsed = JSON.parse(response);
+    const parsed = JSON.parse(jsonText);
 
     // Basic validation
     if (!parsed.counterArgument || typeof parsed.counterArgument !== "string") {
