@@ -5,7 +5,7 @@ import { LoginDialog } from "@/components/auth/login-dialog";
 
 export function Navbar() {
   return (
-    <header className="border-b border-border bg-background">
+    <header className="bg-background shadow-sm">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}

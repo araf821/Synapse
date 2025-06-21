@@ -7,7 +7,7 @@ import {
 
 export function FAQ() {
   return (
-    <section className="px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
+    <section id="faq" className="px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
       <div className="mx-auto max-w-4xl">
         {/* Section Heading */}
         <div className="mb-20 text-center">
