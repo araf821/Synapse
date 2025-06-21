@@ -92,7 +92,7 @@ export function Footer() {
                     >
                       <span className="relative">
                         {link.label}
-                        <div className="absolute bottom-0 left-0 h-0.5 w-0 bg-primary transition-all duration-300 ease-out group-hover:w-full"></div>
+                        <div className="absolute -bottom-0.5 left-0 h-0.5 w-0 bg-primary transition-all duration-300 ease-out group-hover:w-full"></div>
                       </span>
                     </Link>
                   </motion.li>
