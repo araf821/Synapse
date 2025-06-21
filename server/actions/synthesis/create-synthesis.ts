@@ -13,10 +13,10 @@ export async function createSynthesis(title?: string) {
     throw new Error("User must be authenticated to create synthesis");
   }
 
-  try {
-    // Generate a unique ID for the synthesis
-    const synthesisId = crypto.randomUUID();
+  // Generate a unique ID for the synthesis
+  const synthesisId = crypto.randomUUID();
 
+  try {
     // Create new synthesis record
     const [newSynthesis] = await db
       .insert(synthesesTable)
@@ -31,11 +31,11 @@ export async function createSynthesis(title?: string) {
 
     // Revalidate dashboard to show new synthesis
     revalidatePath("/dashboard");
-
-    // Redirect to Stage 1
-    redirect(`/synthesis/${synthesisId}/stage1`);
   } catch (error) {
     console.error("Failed to create synthesis:", error);
     throw new Error("Failed to create synthesis. Please try again.");
   }
+
+  // Redirect to Stage 1 (outside try-catch to let Next.js handle the redirect)
+  redirect(`/synthesis/${synthesisId}/stage1`);
 }
