@@ -1,19 +1,16 @@
 import { signOutAction } from "@/server/actions/auth";
-import { Button } from "@/components/ui/button";
 import { LogOut } from "lucide-react";
 
 export function SignOut() {
   return (
-    <form action={signOutAction}>
-      <Button
+    <form action={signOutAction} className="w-full">
+      <button
         type="submit"
-        variant="ghost"
-        size="sm"
-        className="h-8 px-3 text-muted-foreground hover:text-foreground"
+        className="flex w-full items-center rounded-sm px-2 py-1.5 text-sm text-foreground hover:bg-accent"
       >
-        <LogOut className="size-4" />
-        <span className="sr-only">Sign out</span>
-      </Button>
+        <LogOut className="mr-2 size-4" />
+        <span>Sign Out</span>
+      </button>
     </form>
   );
 }

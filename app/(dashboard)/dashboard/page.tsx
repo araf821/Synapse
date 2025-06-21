@@ -32,7 +32,7 @@ const DashboardPage = async () => {
   ).length;
 
   return (
-    <div className="mx-auto max-w-7xl px-6 py-8 sm:px-8 lg:px-10">
+    <div className="mx-auto max-w-7xl px-6 py-8 sm:px-8 lg:px-10 lg:pb-12">
       {/* Welcome Section */}
       <WelcomeSection user={user} />
 

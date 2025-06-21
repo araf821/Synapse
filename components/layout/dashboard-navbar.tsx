@@ -4,16 +4,16 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { User } from "next-auth";
 import { SynapseIcon } from "@/components/ui/synapse-icon";
-import { Button } from "@/components/ui/button";
 import { RainbowButton } from "@/components/ui/rainbow-button";
-import { SignOut } from "@/components/auth/sign-out";
-import { Plus, User as UserIcon } from "lucide-react";
+import { UserButton } from "@/components/ui/user-button";
+import { Plus } from "lucide-react";
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import { Button } from "../ui/button";
 
 interface DashboardNavbarProps {
   user: User;
@@ -112,26 +112,8 @@ export function DashboardNavbar({ user }: DashboardNavbarProps) {
               </Tooltip>
             </TooltipProvider>
 
-            {/* User Profile & Sign Out */}
-            <div className="flex items-center space-x-3">
-              <div className="hidden items-center space-x-2 sm:flex">
-                <div className="flex size-8 items-center justify-center rounded-full bg-muted">
-                  {user.image ? (
-                    <img
-                      src={user.image}
-                      alt={user.name || "User"}
-                      className="size-8 rounded-full"
-                    />
-                  ) : (
-                    <UserIcon className="size-4 text-muted-foreground" />
-                  )}
-                </div>
-                <span className="text-sm font-medium text-foreground">
-                  {user.name || user.email}
-                </span>
-              </div>
-              <SignOut />
-            </div>
+            {/* User Profile Dropdown */}
+            <UserButton user={user} />
           </div>
         </div>
       </div>
