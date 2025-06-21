@@ -1,5 +1,3 @@
-import "server-only";
-
 // Synthesis Server Actions - Complete API for the 3-stage synthesis workflow
 // Connects the AI pipeline to the user interface
 
