@@ -12,8 +12,9 @@ async function resetDatabase() {
     await sql`DROP TABLE IF EXISTS syntheses CASCADE`;
     await sql`DROP TABLE IF EXISTS users CASCADE`;
 
-    // Drop the enum type as well
+    // Drop the enum types as well
     await sql`DROP TYPE IF EXISTS challenge_type CASCADE`;
+    await sql`DROP TYPE IF EXISTS synthesis_stage CASCADE`;
 
     console.log("✓ All tables dropped successfully");
     console.log("Now run: pnpm db:push");
