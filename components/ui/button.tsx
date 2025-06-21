@@ -45,7 +45,7 @@ const buttonVariants = cva(
 
         // --- Invisible Button ---
         // For actions inside other components (e.g., in a dropdown).
-        ghost: "hover:bg-accent hover:text-accent-foreground",
+        ghost: "hover:bg-accent hover:text-white",
 
         // --- Standard Link ---
         // For navigational links that should look like text.
