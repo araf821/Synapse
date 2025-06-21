@@ -57,7 +57,7 @@ export function Navbar() {
       transition={{ duration: 0.3, ease: "easeOut" }}
     >
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
-        <div className="grid h-16 grid-cols-3 items-center">
+        <div className="grid h-20 grid-cols-3 items-center">
           {/* Logo - Left */}
           <motion.div
             initial={{ opacity: 0, x: -20, filter: "blur(8px)" }}
