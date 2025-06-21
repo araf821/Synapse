@@ -1,3 +1,5 @@
+"use client";
+
 import { Card, CardContent, CardHeader } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -14,9 +16,11 @@ import {
   Brain,
   Target,
   CheckCircle,
+  MoreHorizontal,
 } from "lucide-react";
 import Link from "next/link";
 import { formatDistanceToNow } from "date-fns";
+import { DeleteSynthesisDialog } from "./delete-synthesis-dialog";
 
 interface SynthesisCardProps {
   synthesis: Synthesis;
@@ -98,7 +102,21 @@ export function SynthesisCard({ synthesis }: SynthesisCardProps) {
             )}
           </div>
 
-          <div className="flex shrink-0 flex-col items-end">
+          <div className="flex shrink-0 items-center gap-2">
+            <DeleteSynthesisDialog
+              synthesisId={synthesis.id}
+              synthesisTitle={synthesis.title}
+              trigger={
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  className="h-6 w-6 p-0 opacity-0 transition group-hover:opacity-100 hover:bg-primary/75 hover:text-white"
+                >
+                  <MoreHorizontal className="size-4" />
+                  <span className="sr-only">More options</span>
+                </Button>
+              }
+            />
             <Badge
               variant="secondary"
               className={`flex items-center gap-1.5 ${stageInfo.color}`}
