@@ -1,4 +1,5 @@
 import { LoginDialog } from "@/components/auth/login-dialog";
+import { RainbowButton } from "@/components/ui/rainbow-button";
 
 export function Hero() {
   return (
@@ -19,9 +20,11 @@ export function Hero() {
         {/* CTA Button */}
         <div className="mb-6">
           <LoginDialog
-            triggerText="Start Thinking for Free"
-            variant="default"
-            className="px-8 py-3 text-lg"
+            trigger={
+              <RainbowButton className="text-lg">
+                Start Thinking for Free
+              </RainbowButton>
+            }
           />
         </div>
 

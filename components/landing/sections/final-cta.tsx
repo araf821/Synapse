@@ -1,4 +1,5 @@
 import { LoginDialog } from "@/components/auth/login-dialog";
+import { RainbowButton } from "@/components/ui/rainbow-button";
 
 export function FinalCTA() {
   return (
@@ -11,9 +12,11 @@ export function FinalCTA() {
 
         {/* CTA Button */}
         <LoginDialog
-          triggerText="Start Thinking for Free"
-          variant="default"
-          className="px-8 py-3 text-lg"
+          trigger={
+            <RainbowButton className="text-lg">
+              Start Thinking for Free
+            </RainbowButton>
+          }
         />
       </div>
     </section>

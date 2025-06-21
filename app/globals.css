@@ -41,10 +41,27 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+
+  /* Rainbow button colors */
+  --color-color-1: hsl(var(--color-1));
+  --color-color-2: hsl(var(--color-2));
+  --color-color-3: hsl(var(--color-3));
+  --color-color-4: hsl(var(--color-4));
+  --color-color-5: hsl(var(--color-5));
+
+  /* Rainbow animation */
+  --animate-rainbow: rainbow var(--speed, 2s) infinite linear;
 }
 
 :root {
   --radius: 0.5rem;
+
+  /* Rainbow button color variables */
+  --color-1: 0 100% 63%;
+  --color-2: 270 100% 63%;
+  --color-3: 210 100% 63%;
+  --color-4: 195 100% 63%;
+  --color-5: 90 100% 63%;
 
   /* Synapse "Focused Calm" Color Palette */
   /* Soft off-white background - easier on eyes than stark white */
@@ -143,5 +160,15 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+}
+
+/* Rainbow button keyframes animation */
+@keyframes rainbow {
+  0% {
+    background-position: 0%;
+  }
+  100% {
+    background-position: 200%;
   }
 }

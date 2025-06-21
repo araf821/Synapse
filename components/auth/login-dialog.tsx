@@ -16,21 +16,25 @@ interface LoginDialogProps {
   triggerText?: string;
   variant?: "default" | "ghost" | "outline";
   className?: string;
+  trigger?: React.ReactNode;
 }
 
 export function LoginDialog({
   triggerText = "Log In",
   variant = "ghost",
   className,
+  trigger,
 }: LoginDialogProps) {
   const [open, setOpen] = useState(false);
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant={variant} className={className}>
-          {triggerText}
-        </Button>
+        {trigger || (
+          <Button variant={variant} className={className}>
+            {triggerText}
+          </Button>
+        )}
       </DialogTrigger>
       <DialogContent className="border-border bg-card sm:max-w-md">
         <DialogHeader>
