@@ -23,10 +23,6 @@ export function SynapseIcon({ className, size = 32 }: SynapseIconProps) {
       </defs>
 
       <g>
-        {/* 
-          The synapse flow path - elegant curve representing neural connection
-          Adapted from original logo.svg with same beautiful curve
-        */}
         <path
           d="M 15 50 C 35 80, 65 20, 85 50"
           stroke="url(#synapse-gradient)"
