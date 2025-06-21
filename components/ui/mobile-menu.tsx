@@ -11,6 +11,7 @@ import {
   SheetHeader,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import Image from "next/image";
 
 interface MobileMenuProps {
   user: User;
@@ -28,10 +29,12 @@ export function MobileMenu({ user, open, onOpenChange }: MobileMenuProps) {
       <SheetTrigger asChild>
         <button className="relative flex size-10 items-center justify-center rounded-full bg-muted/50 p-0.5 transition-colors hover:bg-muted focus:ring-2 focus:ring-primary/20 focus:ring-offset-2 focus:outline-none">
           {user.image ? (
-            <img
+            <Image
               src={user.image}
               alt={user.name || "User"}
               className="size-8 rounded-full object-cover"
+              width={32}
+              height={32}
             />
           ) : (
             <UserIcon className="size-5 text-muted-foreground" />

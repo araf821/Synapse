@@ -77,13 +77,13 @@ export function BrainDumpEditor({
     <div className="space-y-6">
       {/* Writing Guidelines */}
       <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
-        <CardHeader className="pb-4">
+        <CardHeader>
           <CardTitle className="flex items-center gap-2 text-lg">
             <FileText className="size-5" />
             Writing Guidelines
           </CardTitle>
         </CardHeader>
-        <CardContent className="space-y-3">
+        <CardContent className="-mt-2 space-y-4">
           <div className="grid gap-3 sm:grid-cols-2">
             <div className="flex items-center gap-2 text-sm">
               <Badge variant="outline" className="text-xs">
