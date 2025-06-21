@@ -7,11 +7,11 @@ import {
 
 export function FAQ() {
   return (
-    <section className="px-4 py-16 sm:px-6 lg:px-8">
+    <section className="px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
       <div className="mx-auto max-w-4xl">
         {/* Section Heading */}
-        <div className="mb-16 text-center">
-          <h2 className="mb-4 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+        <div className="mb-20 text-center">
+          <h2 className="mb-6 font-serif text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
             Frequently Asked Questions
           </h2>
         </div>

@@ -37,17 +37,17 @@ export function Features() {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
 
   return (
-    <section className="bg-muted/30 px-4 py-16 sm:px-6 lg:px-8">
-      <div className="mx-auto max-w-6xl">
+    <section className="bg-muted/30 px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
+      <div className="mx-auto max-w-7xl">
         {/* Section Heading */}
-        <div className="mb-16 text-center">
-          <h2 className="mb-4 font-serif text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+        <div className="mb-20 text-center">
+          <h2 className="mb-6 font-serif text-3xl font-bold tracking-tight text-foreground sm:text-4xl lg:text-5xl">
             The Result: An Unshakeable Confidence in Your Ideas
           </h2>
         </div>
 
         {/* Features Grid */}
-        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+        <div className="grid gap-8 md:grid-cols-2 md:gap-10 lg:grid-cols-4 lg:gap-12">
           {features.map((feature, idx) => {
             const Icon = feature.icon;
             return (
