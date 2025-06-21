@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/dialog";
 import { SynapseIcon } from "@/components/ui/synapse-icon";
 import { SignInGoogle, SignInDiscord } from "@/components/auth/sign-in";
+import { useAuth } from "@/hooks/use-auth";
 
 interface LoginDialogProps {
   triggerText?: string;
@@ -27,6 +28,7 @@ export function LoginDialog({
   trigger,
 }: LoginDialogProps) {
   const [open, setOpen] = useState(false);
+  const { user } = useAuth();
 
   return (
     <Dialog open={open} onOpenChange={setOpen}>
@@ -55,24 +57,43 @@ export function LoginDialog({
 
           <div className="space-y-2">
             <DialogTitle className="text-center font-serif text-xl font-bold text-card-foreground sm:text-2xl">
-              Welcome Back
+              {user ? "Welcome Back" : "Welcome Back"}
             </DialogTitle>
             <DialogDescription className="text-center font-sans text-base text-muted-foreground">
-              Sign in to continue building stronger arguments with your AI
-              sparring partner.
+              {user
+                ? "You're already signed in. Access your dashboard to continue your cognitive journey."
+                : "Sign in to continue building stronger arguments with your AI sparring partner."}
             </DialogDescription>
           </div>
         </DialogHeader>
 
         <div className="relative flex flex-col gap-3 py-6">
-          <SignInGoogle />
-          <SignInDiscord />
+          {user ? (
+            <Button
+              onClick={() => {
+                setOpen(false);
+                window.location.href = "/dashboard";
+              }}
+              variant="default"
+              size="default"
+              className="w-full"
+            >
+              Go to Dashboard
+            </Button>
+          ) : (
+            <>
+              <SignInGoogle />
+              <SignInDiscord />
+            </>
+          )}
         </div>
 
         {/* Footer note */}
         <div className="relative text-center">
           <p className="text-xs text-muted-foreground">
-            By signing in, you agree to our Terms of Service and Privacy Policy.
+            {user
+              ? "Need to switch accounts? Sign out from your dashboard."
+              : "By signing in, you agree to our Terms of Service and Privacy Policy."}
           </p>
         </div>
       </DialogContent>

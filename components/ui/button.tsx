@@ -17,51 +17,51 @@ import { cn } from "@/lib/utils";
 const buttonVariants = cva(
   // --- Base Styles ---
   // All buttons share these core properties for consistency.
-  "inline-flex cursor-pointer items-center justify-center rounded-lg font-sans text-sm font-medium whitespace-nowrap ring-offset-background transition-all duration-200 ease-in-out focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:opacity-50",
+  "inline-flex cursor-pointer items-center justify-center rounded-xl font-sans text-sm font-medium whitespace-nowrap ring-offset-background transition-all duration-300 ease-out select-none focus-visible:ring-2 focus-visible:ring-primary/30 focus-visible:ring-offset-2 focus-visible:outline-none disabled:pointer-events-none disabled:transform-none disabled:opacity-50",
   {
     variants: {
       variant: {
         // --- Primary Action Button ---
         // Used for the most important actions: "Start for Free", "Challenge My Thinking".
-        // Has a shadow and "lifts" on hover to feel important and clickable.
+        // Enhanced with better gradients, shadows, and premium feel.
         default:
-          "bg-primary text-primary-foreground shadow-md hover:-translate-y-0.5 hover:bg-primary/90 hover:shadow-lg active:translate-y-0 active:shadow-sm",
+          "border border-primary/20 bg-gradient-to-br from-primary via-primary to-primary/90 text-primary-foreground shadow-lg shadow-primary/25 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/30 active:translate-y-0 active:scale-100 active:shadow-lg",
 
         // --- Destructive Action Button ---
-        // For actions like deleting a project. Carries the same weight as the default button.
+        // For actions like deleting a project. Enhanced with gradient and better shadows.
         destructive:
-          "text-destructive-foreground bg-destructive shadow-md hover:-translate-y-0.5 hover:bg-destructive/90 hover:shadow-lg active:translate-y-0 active:shadow-sm",
+          "text-destructive-foreground border border-destructive/20 bg-gradient-to-br from-destructive via-destructive to-destructive/90 shadow-lg shadow-destructive/25 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-xl hover:shadow-destructive/30 active:translate-y-0 active:scale-100 active:shadow-lg",
 
         // --- Secondary Action Button ---
-        // Used for less critical actions, like "Log In" or "Export".
-        // Clean, simple, and doesn't compete for attention.
+        // Enhanced with subtle background, better borders, and premium hover effects.
         outline:
-          "border border-input bg-background hover:bg-accent hover:text-accent-foreground",
+          "border-2 border-border/50 bg-background/50 backdrop-blur-sm hover:-translate-y-0.5 hover:border-primary/40 hover:bg-background hover:text-primary hover:shadow-md hover:shadow-primary/10 active:translate-y-0 active:shadow-sm",
 
         // --- Tertiary Action Button ---
-        // A softer version of the secondary button.
+        // Enhanced with subtle gradients and better hover states.
         secondary:
-          "bg-secondary text-secondary-foreground hover:bg-secondary/80",
+          "border border-secondary/20 bg-gradient-to-br from-secondary via-secondary to-secondary/90 text-secondary-foreground hover:-translate-y-0.5 hover:from-secondary/90 hover:to-secondary/80 hover:shadow-md active:translate-y-0 active:shadow-sm",
 
         // --- Invisible Button ---
-        // For actions inside other components (e.g., in a dropdown).
-        ghost: "hover:bg-accent hover:text-white",
+        // Enhanced with smoother transitions and better hover feedback.
+        ghost:
+          "hover:scale-[1.02] hover:bg-accent hover:text-accent-foreground hover:shadow-sm active:scale-100 active:bg-accent/80",
 
         // --- Standard Link ---
-        // For navigational links that should look like text.
-        link: "text-primary underline-offset-4 hover:underline",
+        // Enhanced with better underline animation.
+        link: "text-primary decoration-primary/60 decoration-2 underline-offset-4 transition-all duration-200 hover:underline hover:decoration-primary",
 
-        // --- NEW: Premium/Final Action Button ---
-        // A special variant for the final, rewarding action, like "Finalize & Export".
-        // It has a subtle gradient and a more pronounced hover effect to feel celebratory.
+        // --- Premium/Final Action Button ---
+        // Enhanced with better gradients and more pronounced effects.
         premium:
-          "bg-gradient-to-br from-primary to-blue-700 text-primary-foreground shadow-lg transition-transform hover:-translate-y-1 hover:shadow-xl active:translate-y-0 active:shadow-md",
+          "relative overflow-hidden border border-primary/30 bg-gradient-to-br from-primary via-accent to-primary/80 text-primary-foreground shadow-xl shadow-primary/30 before:absolute before:inset-0 before:-translate-x-full before:-skew-x-12 before:bg-gradient-to-r before:from-transparent before:via-white/20 before:to-transparent before:transition-transform before:duration-700 hover:-translate-y-0.5 hover:scale-[1.02] hover:shadow-2xl hover:shadow-primary/40 hover:before:translate-x-full active:translate-y-0 active:scale-100 active:shadow-xl",
       },
       size: {
-        default: "h-10 px-4 py-2",
-        sm: "h-9 rounded-md px-3",
-        lg: "h-11 rounded-md px-8 text-base", // Made lg slightly larger for hero CTAs
-        icon: "h-10 w-10",
+        default: "h-11 px-6 py-2.5 text-sm",
+        sm: "h-9 rounded-lg px-4 py-2 text-xs font-medium",
+        lg: "h-12 rounded-xl px-8 py-3 text-base font-semibold",
+        icon: "h-11 w-11",
+        xl: "h-14 rounded-2xl px-10 py-4 text-lg font-semibold",
       },
     },
     defaultVariants: {

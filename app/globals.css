@@ -93,7 +93,7 @@
 
   /* Slate blue accent - professional, calming counterbalance */
   --accent: oklch(0.55 0.06 245);
-  --accent-foreground: oklch(0.97 0.012 70);
+  --accent-foreground: oklch(0.985 0 0);
 
   /* Destructive actions remain clear */
   --destructive: oklch(0.55 0.2 25);

@@ -100,7 +100,7 @@ export function Navbar() {
               <LoginDialog
                 triggerText="Log In"
                 variant="ghost"
-                className="hidden text-muted-foreground transition-colors hover:text-foreground sm:inline-flex"
+                className="hidden text-muted-foreground transition-colors sm:inline-flex"
               />
             </motion.div>
             <motion.div
