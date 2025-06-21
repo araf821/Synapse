@@ -18,7 +18,6 @@ import { Save, ArrowRight, FileText, Clock } from "lucide-react";
 import { z } from "zod";
 import { saveBrainDump, progressToStage2 } from "@/server/actions/synthesis";
 import { useRouter } from "next/navigation";
-import { AIProcessingOverlay } from "./ai-processing-overlay";
 
 const brainDumpSchema = z.object({
   content: z.string().trim().min(1, "Please write something before saving"),
@@ -36,7 +35,6 @@ export function BrainDumpEditor({
   initialContent,
 }: BrainDumpEditorProps) {
   const [lastSaved, setLastSaved] = useState<Date | null>(null);
-  const [isProcessingAI, setIsProcessingAI] = useState(false);
   const [isPending, startTransition] = useTransition();
   const router = useRouter();
 
@@ -63,7 +61,6 @@ export function BrainDumpEditor({
   };
 
   const handleProgressToStage2 = () => {
-    setIsProcessingAI(true);
     startTransition(async () => {
       try {
         // Save the content first, then progress to stage 2
@@ -72,132 +69,128 @@ export function BrainDumpEditor({
         router.push(`/synthesis/${synthesisId}/stage2`);
       } catch (error) {
         console.error("Failed to progress to stage 2:", error);
-        setIsProcessingAI(false);
       }
     });
   };
 
   return (
-    <>
-      <AIProcessingOverlay isVisible={isProcessingAI} />
-      <div className="space-y-6">
-        {/* Writing Guidelines */}
-        <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2 text-lg">
-              <FileText className="size-5" />
-              Writing Guidelines
-            </CardTitle>
-          </CardHeader>
-          <CardContent className="-mt-2 space-y-4">
-            <div className="grid gap-3 sm:grid-cols-2">
-              <div className="flex items-center gap-2 text-sm">
-                <Badge variant="outline" className="text-xs">
-                  ✓
-                </Badge>
-                <span>Your authentic thoughts</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm">
-                <Badge variant="outline" className="text-xs">
-                  ✓
-                </Badge>
-                <span>No external research</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm">
-                <Badge variant="outline" className="text-xs">
-                  ✓
-                </Badge>
-                <span>Stream of consciousness OK</span>
-              </div>
-              <div className="flex items-center gap-2 text-sm">
-                <Badge variant="outline" className="text-xs">
-                  ✓
-                </Badge>
-                <span>Arguments and reasoning</span>
-              </div>
+    <div className="space-y-6">
+      {/* Writing Guidelines */}
+      <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
+        <CardHeader>
+          <CardTitle className="flex items-center gap-2 text-lg">
+            <FileText className="size-5" />
+            Writing Guidelines
+          </CardTitle>
+        </CardHeader>
+        <CardContent className="-mt-2 space-y-4">
+          <div className="grid gap-3 sm:grid-cols-2">
+            <div className="flex items-center gap-2 text-sm">
+              <Badge variant="outline" className="text-xs">
+                ✓
+              </Badge>
+              <span>Your authentic thoughts</span>
             </div>
-          </CardContent>
-        </Card>
-
-        {/* Editor */}
-        <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
-          <CardHeader className="pb-4">
-            <div className="flex items-center justify-between">
-              <CardTitle className="text-lg">Your Brain Dump</CardTitle>
-              <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                {wordCount > 0 && (
-                  <span className="flex items-center gap-1">
-                    <FileText className="size-3" />
-                    {wordCount} words
-                  </span>
-                )}
-                {lastSaved && (
-                  <span className="flex items-center gap-1">
-                    <Clock className="size-3" />
-                    Saved {lastSaved.toLocaleTimeString()}
-                  </span>
-                )}
-              </div>
+            <div className="flex items-center gap-2 text-sm">
+              <Badge variant="outline" className="text-xs">
+                ✓
+              </Badge>
+              <span>No external research</span>
             </div>
-          </CardHeader>
-          <CardContent>
-            <Form {...form}>
-              <form
-                onSubmit={form.handleSubmit(handleSave)}
-                className="space-y-4"
-              >
-                <FormField
-                  control={form.control}
-                  name="content"
-                  render={({ field }) => (
-                    <FormItem>
-                      <FormControl>
-                        <Textarea
-                          {...field}
-                          placeholder="Start writing your thoughts here... What's your take on this topic? What do you believe and why?"
-                          className="min-h-[400px] resize-none text-base leading-relaxed lg:text-lg"
-                          disabled={isPending}
-                        />
-                      </FormControl>
-                      <FormMessage />
-                    </FormItem>
-                  )}
-                />
+            <div className="flex items-center gap-2 text-sm">
+              <Badge variant="outline" className="text-xs">
+                ✓
+              </Badge>
+              <span>Stream of consciousness OK</span>
+            </div>
+            <div className="flex items-center gap-2 text-sm">
+              <Badge variant="outline" className="text-xs">
+                ✓
+              </Badge>
+              <span>Arguments and reasoning</span>
+            </div>
+          </div>
+        </CardContent>
+      </Card>
 
-                <div className="flex flex-col gap-3 sm:flex-row sm:justify-between">
-                  <Button
-                    type="submit"
-                    variant="outline"
-                    disabled={isPending || !hasContent}
-                    className="sm:w-auto"
-                  >
-                    <Save className="mr-2 size-4" />
-                    {isPending ? "Saving..." : "Save Draft"}
-                  </Button>
+      {/* Editor */}
+      <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
+        <CardHeader className="pb-4">
+          <div className="flex items-center justify-between">
+            <CardTitle className="text-lg">Your Brain Dump</CardTitle>
+            <div className="flex items-center gap-4 text-sm text-muted-foreground">
+              {wordCount > 0 && (
+                <span className="flex items-center gap-1">
+                  <FileText className="size-3" />
+                  {wordCount} words
+                </span>
+              )}
+              {lastSaved && (
+                <span className="flex items-center gap-1">
+                  <Clock className="size-3" />
+                  Saved {lastSaved.toLocaleTimeString()}
+                </span>
+              )}
+            </div>
+          </div>
+        </CardHeader>
+        <CardContent>
+          <Form {...form}>
+            <form
+              onSubmit={form.handleSubmit(handleSave)}
+              className="space-y-4"
+            >
+              <FormField
+                control={form.control}
+                name="content"
+                render={({ field }) => (
+                  <FormItem>
+                    <FormControl>
+                      <Textarea
+                        {...field}
+                        placeholder="Start writing your thoughts here... What's your take on this topic? What do you believe and why?"
+                        className="min-h-[400px] resize-none text-base leading-relaxed lg:text-lg"
+                        disabled={isPending}
+                      />
+                    </FormControl>
+                    <FormMessage />
+                  </FormItem>
+                )}
+              />
 
-                  <Button
-                    type="button"
-                    onClick={handleProgressToStage2}
-                    disabled={isPending || !hasContent}
-                    className="sm:w-auto"
-                  >
-                    Challenge My Thinking
-                    <ArrowRight className="ml-2 size-4" />
-                  </Button>
-                </div>
-              </form>
-            </Form>
-          </CardContent>
-        </Card>
+              <div className="flex flex-col gap-3 sm:flex-row sm:justify-between">
+                <Button
+                  type="submit"
+                  variant="outline"
+                  disabled={isPending || !hasContent}
+                  className="sm:w-auto"
+                >
+                  <Save className="mr-2 size-4" />
+                  {isPending ? "Saving..." : "Save Draft"}
+                </Button>
 
-        {/* Help Text */}
-        <div className="text-center text-sm text-muted-foreground">
-          <p>
-            Write freely without self-censoring. The AI will challenge your
-            ideas in the next stage, so focus on authentic expression now.
-          </p>
-        </div>
+                <Button
+                  type="button"
+                  onClick={handleProgressToStage2}
+                  disabled={isPending || !hasContent}
+                  className="sm:w-auto"
+                >
+                  Challenge My Thinking
+                  <ArrowRight className="ml-2 size-4" />
+                </Button>
+              </div>
+            </form>
+          </Form>
+        </CardContent>
+      </Card>
+
+      {/* Help Text */}
+      <div className="text-center text-sm text-muted-foreground">
+        <p>
+          Write freely without self-censoring. The AI will challenge your ideas
+          in the next stage, so focus on authentic expression now.
+        </p>
       </div>
-    </>
+    </div>
   );
 }

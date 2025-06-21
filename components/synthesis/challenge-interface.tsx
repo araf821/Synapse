@@ -21,6 +21,7 @@ import {
   progressToStage3,
 } from "@/server/actions/synthesis";
 import { useRouter } from "next/navigation";
+import { AIProcessingOverlay } from "./ai-processing-overlay";
 
 interface ChallengeInterfaceProps {
   synthesisId: string;
@@ -80,9 +81,9 @@ export function ChallengeInterface({
       window.location.reload();
     } catch (error) {
       console.error("Failed to generate challenges:", error);
-    } finally {
       setIsGenerating(false);
     }
+    // Note: Don't set setIsGenerating(false) on success since we're reloading the page
   };
 
   const handleSaveResponse = async (challengeId: string) => {
@@ -114,62 +115,65 @@ export function ChallengeInterface({
 
   if (hasNoChallenges) {
     return (
-      <div className="space-y-6">
-        {/* Brain Dump Display */}
-        <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
-          <CardHeader>
-            <CardTitle className="flex items-center gap-2">
-              <Brain className="size-5" />
-              Your Brain Dump
-            </CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="rounded-lg bg-muted/50 p-4 text-muted-foreground">
-              <p className="text-sm leading-relaxed whitespace-pre-wrap">
-                {synthesis.rawText || "No content available"}
-              </p>
-            </div>
-          </CardContent>
-        </Card>
-
-        {/* Generate Challenges Button */}
-        <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
-          <CardContent className="pt-6">
-            <div className="space-y-4 text-center">
-              <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-primary/10">
-                <Target className="size-8 text-primary" />
-              </div>
-              <div>
-                <h3 className="font-display text-xl font-semibold">
-                  Ready for the Challenge?
-                </h3>
-                <p className="mt-2 text-muted-foreground">
-                  Our AI will analyze your thinking and generate three targeted
-                  challenges to strengthen your argument.
+      <>
+        <AIProcessingOverlay isVisible={isGenerating} />
+        <div className="space-y-6">
+          {/* Brain Dump Display */}
+          <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Brain className="size-5" />
+                Your Brain Dump
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <div className="rounded-lg bg-muted/50 p-4 text-muted-foreground">
+                <p className="text-sm leading-relaxed whitespace-pre-wrap">
+                  {synthesis.rawText || "No content available"}
                 </p>
               </div>
-              <Button
-                onClick={handleGenerateChallenges}
-                disabled={isGenerating}
-                size="lg"
-                className="mt-4"
-              >
-                {isGenerating ? (
-                  <>
-                    <Loader2 className="mr-2 size-5 animate-spin" />
-                    Forging Counter-Arguments...
-                  </>
-                ) : (
-                  <>
-                    <Brain className="mr-2 size-5" />
-                    Generate AI Challenges
-                  </>
-                )}
-              </Button>
-            </div>
-          </CardContent>
-        </Card>
-      </div>
+            </CardContent>
+          </Card>
+
+          {/* Generate Challenges Button */}
+          <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
+            <CardContent className="pt-6">
+              <div className="space-y-4 text-center">
+                <div className="mx-auto flex size-16 items-center justify-center rounded-full bg-primary/10">
+                  <Target className="size-8 text-primary" />
+                </div>
+                <div>
+                  <h3 className="font-display text-xl font-semibold">
+                    Ready for the Challenge?
+                  </h3>
+                  <p className="mt-2 text-muted-foreground">
+                    Our AI will analyze your thinking and generate three
+                    targeted challenges to strengthen your argument.
+                  </p>
+                </div>
+                <Button
+                  onClick={handleGenerateChallenges}
+                  disabled={isGenerating}
+                  size="lg"
+                  className="mt-4"
+                >
+                  {isGenerating ? (
+                    <>
+                      <Loader2 className="mr-2 size-5 animate-spin" />
+                      Forging Counter-Arguments...
+                    </>
+                  ) : (
+                    <>
+                      <Brain className="mr-2 size-5" />
+                      Generate AI Challenges
+                    </>
+                  )}
+                </Button>
+              </div>
+            </CardContent>
+          </Card>
+        </div>
+      </>
     );
   }
 
