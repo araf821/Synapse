@@ -6,7 +6,24 @@ export {
   type StructuralMappingOutput,
 } from "./ai/agent1-structural-mapping";
 
-// TODO: Add other agents as they are implemented
-// export { externalContradictionAgent } from './ai/agent2a-external-contradiction';
-// export { internalCritiqueAgent } from './ai/agent2b-internal-critique';
-// export { socraticQuestionGenerator } from './ai/agent3-socratic-questions';
+export {
+  externalContradictionAgent,
+  type ExternalContradictionOutput,
+} from "./ai/agent2a-external-contradiction";
+
+export {
+  internalCritiqueAgent,
+  type InternalCritiqueOutput,
+} from "./ai/agent2b-internal-critique";
+
+export {
+  socraticGeneratorAgent,
+  type SocraticGeneratorOutput,
+  type ChallengeCard,
+} from "./ai/agent3-socratic-generator";
+
+// Main pipeline orchestration function
+export {
+  runSynthesisPipeline,
+  type SynthesisPipelineOutput,
+} from "./ai/synthesis-pipeline";
