@@ -36,7 +36,3 @@ export const jetbrainsMono = JetBrains_Mono({
   weight: ["400", "500", "600"],
   display: "swap",
 });
-
-// Legacy exports for backward compatibility
-export const geistSans = sourceSans;
-export const geistMono = jetbrainsMono;

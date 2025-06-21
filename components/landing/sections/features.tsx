@@ -81,19 +81,13 @@ export function Features() {
                   )}
                 >
                   <CardContent className="p-6 text-center">
-                    <motion.div
-                      className="mb-4 flex justify-center"
-                      whileHover={{ scale: 1.1 }}
-                      transition={{ duration: 0.2 }}
-                    >
-                      <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary transition-all duration-200 group-hover:bg-primary/90">
-                        <Icon className="h-6 w-6 text-primary-foreground" />
-                      </div>
-                    </motion.div>
-                    <h3 className="mb-3 font-serif text-lg font-semibold text-card-foreground transition-colors duration-200 group-hover:text-primary">
+                    <div className="mx-auto mb-4 flex h-12 w-12 items-center justify-center rounded-full bg-primary shadow-primary/50 transition-all duration-200 group-hover:-translate-y-1 group-hover:scale-105 group-hover:bg-primary/90 group-hover:shadow-lg">
+                      <Icon className="h-6 w-6 text-primary-foreground" />
+                    </div>
+                    <h3 className="mb-3 font-serif text-lg font-semibold text-card-foreground transition duration-200 group-hover:scale-105 group-hover:text-primary">
                       {feature.title}
                     </h3>
-                    <p className="font-sans text-sm leading-relaxed text-muted-foreground">
+                    <p className="font-sans text-sm leading-relaxed text-balance text-muted-foreground">
                       {feature.description}
                     </p>
                   </CardContent>
