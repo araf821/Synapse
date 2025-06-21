@@ -1,7 +1,12 @@
 import type { Metadata } from "next";
 import "./globals.css";
 import { AuthSessionProvider } from "@/components/auth/session-provider";
-import { geistMono, geistSans } from "@/lib/fonts";
+import {
+  crimsonText,
+  playfairDisplay,
+  sourceSans,
+  jetbrainsMono,
+} from "@/lib/fonts";
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${sourceSans.variable} ${crimsonText.variable} ${playfairDisplay.variable} ${jetbrainsMono.variable} antialiased`}
       >
         <AuthSessionProvider>{children}</AuthSessionProvider>
       </body>

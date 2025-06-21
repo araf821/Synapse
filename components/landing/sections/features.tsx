@@ -7,7 +7,7 @@ export function Features() {
       <div className="mx-auto max-w-6xl">
         {/* Section Heading */}
         <div className="mb-16 text-center">
-          <h2 className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+          <h2 className="mb-4 font-serif text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
             The Result: An Unshakeable Confidence in Your Ideas
           </h2>
         </div>
@@ -22,10 +22,10 @@ export function Features() {
                   <Shield className="h-6 w-6 text-primary-foreground" />
                 </div>
               </div>
-              <h3 className="mb-3 text-lg font-semibold text-card-foreground">
+              <h3 className="mb-3 font-serif text-lg font-semibold text-card-foreground">
                 Build Defensible Ideas
               </h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">
+              <p className="font-sans text-sm leading-relaxed text-muted-foreground">
                 Withstand any scrutiny by anticipating and preparing for every
                 counter-argument before it's even made.
               </p>
@@ -40,10 +40,10 @@ export function Features() {
                   <Lightbulb className="h-6 w-6 text-primary-foreground" />
                 </div>
               </div>
-              <h3 className="mb-3 text-lg font-semibold text-card-foreground">
+              <h3 className="mb-3 font-serif text-lg font-semibold text-card-foreground">
                 Overcome Mental Blocks
               </h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">
+              <p className="font-sans text-sm leading-relaxed text-muted-foreground">
                 Use structured, AI-driven friction to break through creative
                 ruts and discover novel perspectives.
               </p>
@@ -58,10 +58,10 @@ export function Features() {
                   <Target className="h-6 w-6 text-primary-foreground" />
                 </div>
               </div>
-              <h3 className="mb-3 text-lg font-semibold text-card-foreground">
+              <h3 className="mb-3 font-serif text-lg font-semibold text-card-foreground">
                 Deepen Your Understanding
               </h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">
+              <p className="font-sans text-sm leading-relaxed text-muted-foreground">
                 Go beyond surface-level knowledge by actively wrestling with
                 opposing viewpoints and data.
               </p>
@@ -76,10 +76,10 @@ export function Features() {
                   <User className="h-6 w-6 text-primary-foreground" />
                 </div>
               </div>
-              <h3 className="mb-3 text-lg font-semibold text-card-foreground">
+              <h3 className="mb-3 font-serif text-lg font-semibold text-card-foreground">
                 Truly Own Your Work
               </h3>
-              <p className="text-sm leading-relaxed text-muted-foreground">
+              <p className="font-sans text-sm leading-relaxed text-muted-foreground">
                 Produce 100% original arguments that are authentically
                 yours—augmented by AI, never authored by it.
               </p>

@@ -20,7 +20,7 @@ export function RainbowButton({
     <button
       className={cn(
         // Base styles - following Synapse button philosophy
-        "relative inline-flex h-11 items-center justify-center rounded-lg border-0 px-8 py-2",
+        "relative inline-flex h-11 cursor-pointer items-center justify-center rounded-lg border-0 px-8 py-2",
         "text-sm font-medium whitespace-nowrap",
         "transition-all duration-200 ease-in-out",
         "shadow-md hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0 active:shadow-sm",
