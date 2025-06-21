@@ -149,7 +149,7 @@ export function BrainDumpEditor({
                       <Textarea
                         {...field}
                         placeholder="Start writing your thoughts here... What's your take on this topic? What do you believe and why?"
-                        className="min-h-[400px] resize-none text-base leading-relaxed"
+                        className="min-h-[400px] resize-none text-base leading-relaxed lg:text-lg"
                         disabled={isPending}
                       />
                     </FormControl>

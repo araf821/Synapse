@@ -114,15 +114,15 @@ export function FinalSynthesisEditor({
   };
 
   return (
-    <div className="space-y-6">
+    <div className="space-y-4 sm:space-y-6">
       {/* Reference Materials */}
       <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
-        <CardHeader>
-          <CardTitle className="flex items-center gap-2">
-            <Target className="size-5" />
+        <CardHeader className="pb-4 sm:pb-6">
+          <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
+            <Target className="size-4 sm:size-5" />
             Reference Materials
           </CardTitle>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-muted-foreground sm:text-base">
             Review your original thoughts and challenge responses to craft a
             stronger argument.
           </p>
@@ -131,19 +131,21 @@ export function FinalSynthesisEditor({
           <Accordion type="multiple" className="w-full">
             {/* Original Brain Dump */}
             <AccordionItem value="brain-dump">
-              <AccordionTrigger className="hover:no-underline">
-                <div className="flex items-center gap-3">
+              <AccordionTrigger className="py-3 hover:no-underline sm:py-4">
+                <div className="flex items-center gap-2 sm:gap-3">
                   <Badge
                     variant="outline"
                     className="bg-blue-100 text-blue-800 dark:bg-blue-900/20 dark:text-blue-400"
                   >
                     <Brain className="mr-1 size-3" />
-                    Original Brain Dump
+                    <span className="text-xs sm:text-sm">
+                      Original Brain Dump
+                    </span>
                   </Badge>
                 </div>
               </AccordionTrigger>
-              <AccordionContent>
-                <div className="rounded-lg bg-muted/50 p-4">
+              <AccordionContent className="pt-2 pb-4 sm:pt-3 sm:pb-6">
+                <div className="rounded-lg bg-muted/50 p-3 sm:p-4">
                   <p className="text-sm leading-relaxed whitespace-pre-wrap">
                     {synthesis.rawText || "No original content available"}
                   </p>
@@ -156,30 +158,33 @@ export function FinalSynthesisEditor({
               const typeInfo = challengeTypeInfo[challenge.type];
               return (
                 <AccordionItem key={challenge.id} value={`challenge-${index}`}>
-                  <AccordionTrigger className="hover:no-underline">
-                    <div className="flex items-center gap-3">
-                      <Badge variant="outline" className={typeInfo.color}>
+                  <AccordionTrigger className="py-3 hover:no-underline sm:py-4">
+                    <div className="flex items-center gap-2 sm:gap-3">
+                      <Badge
+                        variant="outline"
+                        className={`${typeInfo.color} text-xs sm:text-sm`}
+                      >
                         Challenge {index + 1}: {typeInfo.title}
                       </Badge>
                     </div>
                   </AccordionTrigger>
-                  <AccordionContent className="space-y-4">
+                  <AccordionContent className="space-y-3 pt-2 pb-4 sm:space-y-4 sm:pt-3 sm:pb-6">
                     <div>
-                      <h4 className="mb-2 text-sm font-medium">
+                      <h4 className="mb-1 text-xs font-medium sm:mb-2 sm:text-sm">
                         AI Challenge:
                       </h4>
                       <div className="rounded-lg bg-muted/50 p-3">
-                        <p className="text-sm text-muted-foreground">
+                        <p className="text-xs text-muted-foreground sm:text-sm">
                           {challenge.aiGeneratedQuestion}
                         </p>
                       </div>
                     </div>
                     <div>
-                      <h4 className="mb-2 text-sm font-medium">
+                      <h4 className="mb-1 text-xs font-medium sm:mb-2 sm:text-sm">
                         Your Response:
                       </h4>
                       <div className="rounded-lg bg-muted/50 p-3">
-                        <p className="text-sm leading-relaxed whitespace-pre-wrap">
+                        <p className="text-xs leading-relaxed whitespace-pre-wrap sm:text-sm">
                           {challenge.userResponse || "No response provided"}
                         </p>
                       </div>
@@ -194,13 +199,13 @@ export function FinalSynthesisEditor({
 
       {/* Final Synthesis Editor */}
       <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
-        <CardHeader>
-          <div className="flex items-center justify-between">
-            <CardTitle className="flex items-center gap-2">
-              <CheckCircle className="size-5" />
+        <CardHeader className="pb-4 sm:pb-6">
+          <div className="flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
+            <CardTitle className="flex items-center gap-2 text-lg sm:text-xl">
+              <CheckCircle className="size-4 sm:size-5" />
               Your Final Synthesis
             </CardTitle>
-            <div className="flex items-center gap-4 text-sm text-muted-foreground">
+            <div className="flex items-center gap-3 text-xs text-muted-foreground sm:gap-4 sm:text-sm">
               {wordCount > 0 && (
                 <span className="flex items-center gap-1">
                   <FileText className="size-3" />
@@ -210,12 +215,13 @@ export function FinalSynthesisEditor({
               {lastSaved && (
                 <span className="flex items-center gap-1">
                   <Clock className="size-3" />
-                  Saved {lastSaved.toLocaleTimeString()}
+                  <span className="hidden sm:inline">Saved </span>
+                  {lastSaved.toLocaleTimeString()}
                 </span>
               )}
             </div>
           </div>
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-muted-foreground sm:text-base">
             Synthesize your original thinking with your challenge responses into
             a refined, stronger argument.
           </p>
@@ -235,7 +241,7 @@ export function FinalSynthesisEditor({
                       <Textarea
                         {...field}
                         placeholder="Write your final synthesis here... How has your thinking evolved? What new insights emerged from the challenges? How do you address the counter-arguments?"
-                        className="min-h-[400px] resize-none text-base leading-relaxed"
+                        className="min-h-[300px] resize-none text-base leading-relaxed sm:min-h-[400px] lg:text-lg"
                         disabled={isPending}
                       />
                     </FormControl>
@@ -272,31 +278,33 @@ export function FinalSynthesisEditor({
 
       {/* Completion Guidelines */}
       <Card className="border-border/50 bg-card/50 backdrop-blur-sm">
-        <CardHeader>
-          <CardTitle className="text-lg">Synthesis Guidelines</CardTitle>
+        <CardHeader className="pb-4 sm:pb-6">
+          <CardTitle className="text-base sm:text-lg">
+            Synthesis Guidelines
+          </CardTitle>
         </CardHeader>
         <CardContent>
-          <div className="grid gap-3 sm:grid-cols-2">
-            <div className="flex items-center gap-2 text-sm">
-              <Badge variant="outline" className="text-xs">
+          <div className="grid gap-2 sm:grid-cols-2 sm:gap-3">
+            <div className="flex items-center gap-2 text-xs sm:text-sm">
+              <Badge variant="outline" className="shrink-0 text-xs">
                 ✓
               </Badge>
               <span>Address the challenges directly</span>
             </div>
-            <div className="flex items-center gap-2 text-sm">
-              <Badge variant="outline" className="text-xs">
+            <div className="flex items-center gap-2 text-xs sm:text-sm">
+              <Badge variant="outline" className="shrink-0 text-xs">
                 ✓
               </Badge>
               <span>Integrate original and new thinking</span>
             </div>
-            <div className="flex items-center gap-2 text-sm">
-              <Badge variant="outline" className="text-xs">
+            <div className="flex items-center gap-2 text-xs sm:text-sm">
+              <Badge variant="outline" className="shrink-0 text-xs">
                 ✓
               </Badge>
               <span>Acknowledge counterarguments</span>
             </div>
-            <div className="flex items-center gap-2 text-sm">
-              <Badge variant="outline" className="text-xs">
+            <div className="flex items-center gap-2 text-xs sm:text-sm">
+              <Badge variant="outline" className="shrink-0 text-xs">
                 ✓
               </Badge>
               <span>Present a cohesive argument</span>

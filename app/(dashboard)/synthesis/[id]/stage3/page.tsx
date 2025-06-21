@@ -34,17 +34,17 @@ export default async function Stage3Page({ params }: Stage3PageProps) {
   }
 
   return (
-    <div className="mx-auto max-w-4xl px-6 py-8 sm:px-8 lg:px-10">
+    <div className="mx-auto max-w-4xl px-4 py-6 sm:px-6 sm:py-8 lg:px-8 lg:py-10">
       <StageHeader
         stage={3}
         title="Final Synthesis"
         description="Craft your refined argument using everything you've learned. Integrate your original thoughts with responses to the challenges."
-        icon={<CheckCircle className="size-6" />}
+        icon={<CheckCircle className="size-5 sm:size-6" />}
         synthesisId={id}
         synthesisTitle={synthesis.title}
       />
 
-      <div className="mt-8">
+      <div className="mt-6 sm:mt-8">
         <FinalSynthesisEditor
           synthesisId={id}
           synthesis={synthesis}
