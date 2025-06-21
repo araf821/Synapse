@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import { motion } from "motion/react";
 import { LoginDialog } from "@/components/auth/login-dialog";
 import { SynapseIcon } from "@/components/ui/synapse-icon";
+import { landingNavigation } from "@/config/navigation";
 
 // Navigation Link with animated underline and entrance animation
 function NavLink({
@@ -74,15 +75,15 @@ export function Navbar() {
 
           {/* Navigation Links - Center */}
           <nav className="hidden items-center justify-center space-x-8 md:flex">
-            <NavLink href="#how-it-works" delay={0.2}>
-              How It Works
-            </NavLink>
-            <NavLink href="#pricing" delay={0.3}>
-              Pricing
-            </NavLink>
-            <NavLink href="#faq" delay={0.4}>
-              FAQ
-            </NavLink>
+            {landingNavigation.map((link, index) => (
+              <NavLink
+                key={link.href}
+                href={link.href}
+                delay={0.2 + index * 0.1}
+              >
+                {link.label}
+              </NavLink>
+            ))}
           </nav>
 
           {/* Action Buttons - Right */}
