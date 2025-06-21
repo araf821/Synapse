@@ -68,6 +68,12 @@ export const verificationTokensTable = pgTable(
 export type User = typeof usersTable.$inferSelect;
 export type NewUser = typeof usersTable.$inferInsert;
 
+export const synthesisStageEnum = pgEnum("synthesis_stage", [
+  "brain_dump", // Stage 1
+  "gauntlet", // Stage 2
+  "synthesis", // Stage 3
+]);
+
 // Syntheses table - Main project table for the "Gauntlet" workflow
 export const synthesesTable = pgTable("syntheses", {
   id: text("id").primaryKey(), // Using text for IDs to match Auth.js pattern
@@ -85,7 +91,7 @@ export const synthesesTable = pgTable("syntheses", {
   finalText: text("final_text"), // The final, user-crafted argument after the gauntlet
 
   // --- Metadata ---
-  stage: integer("stage").default(1).notNull(), // 1: BrainDump, 2: Gauntlet, 3: Synthesis
+  stage: synthesisStageEnum("stage").default("brain_dump").notNull(),
   isCompleted: boolean("is_completed").default(false).notNull(),
   createdAt: timestamp("created_at").defaultNow().notNull(),
   updatedAt: timestamp("updated_at").defaultNow().notNull(),
