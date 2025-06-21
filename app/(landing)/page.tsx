@@ -1,6 +1,8 @@
 import { Navbar } from "@/components/layout/navbar";
 import { Hero } from "@/components/landing/sections/hero";
 import { ProblemQuote } from "@/components/landing/sections/problem-quote";
+import { Solution } from "@/components/landing/sections/solution";
+import { Features } from "@/components/landing/sections/features";
 
 const LandingPage = () => {
   return (
@@ -11,8 +13,10 @@ const LandingPage = () => {
 
       <ProblemQuote />
 
-      {/* TODO: Solution Section - "From Raw Idea to Battle-Tested Argument" with 3 steps */}
-      {/* TODO: Features Grid - 4 benefits with icons */}
+      <Solution />
+
+      <Features />
+
       {/* TODO: FAQ Section - Accordion with 5 questions */}
       {/* TODO: Final CTA Section - "Ready to Build Your Strongest Argument?" */}
 
