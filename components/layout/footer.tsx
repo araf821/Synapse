@@ -7,10 +7,13 @@ export function Footer() {
         <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
           {/* Logo and Description */}
           <div className="md:col-span-1">
-            <Link href="/" className="text-xl font-bold text-foreground">
+            <Link
+              href="/"
+              className="font-display text-xl font-bold text-foreground"
+            >
               Synapse
             </Link>
-            <p className="mt-4 text-sm text-muted-foreground">
+            <p className="mt-4 text-sm leading-relaxed text-muted-foreground">
               The AI-powered sparring partner that challenges your thinking and
               helps you build stronger arguments.
             </p>

@@ -11,7 +11,7 @@ export function FAQ() {
       <div className="mx-auto max-w-4xl">
         {/* Section Heading */}
         <div className="mb-16 text-center">
-          <h2 className="mb-4 text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+          <h2 className="mb-4 font-display text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
             Frequently Asked Questions
           </h2>
         </div>
@@ -19,10 +19,10 @@ export function FAQ() {
         {/* FAQ Accordion */}
         <Accordion type="single" collapsible className="w-full">
           <AccordionItem value="item-1">
-            <AccordionTrigger className="text-left">
+            <AccordionTrigger className="text-left font-medium">
               How is this different from just prompting ChatGPT?
             </AccordionTrigger>
-            <AccordionContent>
+            <AccordionContent className="leading-relaxed">
               ChatGPT is a conversational 'answer machine.' Synapse is a
               structured 'thinking workflow.' Our purpose-built interface and
               multi-agent system guide you through a deliberate process of
@@ -33,23 +33,23 @@ export function FAQ() {
           </AccordionItem>
 
           <AccordionItem value="item-2">
-            <AccordionTrigger className="text-left">
+            <AccordionTrigger className="text-left font-medium">
               Who is Synapse for?
             </AccordionTrigger>
-            <AccordionContent>
+            <AccordionContent className="leading-relaxed">
               Synapse is for anyone whose work depends on the quality of their
               thinking. This includes PhD students developing a thesis, startup
-              founders crafting a market strategy, lawyers building a case,
+              founders crafted a market strategy, lawyers building a case,
               consultants writing a report, and any writer or creator looking to
               produce deep, original work.
             </AccordionContent>
           </AccordionItem>
 
           <AccordionItem value="item-3">
-            <AccordionTrigger className="text-left">
+            <AccordionTrigger className="text-left font-medium">
               Is my data private?
             </AccordionTrigger>
-            <AccordionContent>
+            <AccordionContent className="leading-relaxed">
               Yes. Your work is your own. We have a strict privacy policy and
               your syntheses are private to your account. We do not use your
               data to train AI models.
@@ -57,10 +57,10 @@ export function FAQ() {
           </AccordionItem>
 
           <AccordionItem value="item-4">
-            <AccordionTrigger className="text-left">
+            <AccordionTrigger className="text-left font-medium">
               What AI model do you use?
             </AccordionTrigger>
-            <AccordionContent>
+            <AccordionContent className="leading-relaxed">
               We use a proprietary orchestration layer that leverages multiple
               state-of-the-art models, including Google's Gemini, for different
               tasks. Our value is in our unique workflow and how we use these
@@ -69,10 +69,10 @@ export function FAQ() {
           </AccordionItem>
 
           <AccordionItem value="item-5">
-            <AccordionTrigger className="text-left">
+            <AccordionTrigger className="text-left font-medium">
               Is this going to slow me down?
             </AccordionTrigger>
-            <AccordionContent>
+            <AccordionContent className="leading-relaxed">
               Yes, and that's the point. For the 90% of your work that requires
               speed, use other tools. For the 10% that requires depth and
               originality, Synapse will save you from the long-term cost of
