@@ -42,7 +42,7 @@ export function EmptyState() {
         </Link>
       </Button>
 
-      <p className="mt-8 text-xs text-muted-foreground">
+      <p className="mt-8 text-sm text-muted-foreground">
         Each synthesis takes you through a structured process to refine and
         strengthen your ideas
       </p>
