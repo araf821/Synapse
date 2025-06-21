@@ -5,13 +5,11 @@ import { User as UserIcon } from "lucide-react";
 import { SignOut } from "@/components/auth/sign-out";
 import { NavigationLinks } from "@/components/ui/navigation-links";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
+  Popover,
+  PopoverContent,
+  PopoverTrigger,
+} from "@/components/ui/popover";
+import Image from "next/image";
 
 interface UserDropdownProps {
   user: User;
@@ -19,38 +17,45 @@ interface UserDropdownProps {
 
 export function UserDropdown({ user }: UserDropdownProps) {
   return (
-    <DropdownMenu>
-      <DropdownMenuTrigger asChild>
-        <button className="relative flex size-10 items-center justify-center rounded-full bg-muted/50 p-0.5 transition-colors hover:bg-muted focus:ring-2 focus:ring-primary/20 focus:ring-offset-2 focus:outline-none">
+    <Popover>
+      <PopoverTrigger asChild>
+        <button className="relative flex size-10 cursor-pointer items-center justify-center rounded-full bg-muted/50 p-0.5 transition hover:bg-muted focus-visible:scale-110 focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:outline-none">
           {user.image ? (
-            <img
+            <Image
               src={user.image}
               alt={user.name || "User"}
-              className="size-8 rounded-full object-cover"
+              className="size-9 rounded-full object-cover"
+              width={32}
+              height={32}
             />
           ) : (
-            <UserIcon className="size-5 text-muted-foreground" />
+            <div className="grid size-9 place-items-center rounded-full bg-primary">
+              <UserIcon className="size-5 text-background" />
+            </div>
           )}
         </button>
-      </DropdownMenuTrigger>
-      <DropdownMenuContent className="w-64" align="end" forceMount>
-        <DropdownMenuLabel className="font-normal">
+      </PopoverTrigger>
+      <PopoverContent className="w-64 p-0" align="end">
+        {/* User info header */}
+        <div className="border-b border-border/50 px-4 py-3">
           <div className="flex flex-col space-y-1">
             <p className="text-sm leading-none font-medium">{user.name}</p>
             <p className="text-xs leading-none text-muted-foreground">
               {user.email}
             </p>
           </div>
-        </DropdownMenuLabel>
-        <DropdownMenuSeparator />
-        <div className="p-1">
+        </div>
+
+        {/* Navigation links */}
+        <div className="p-2">
           <NavigationLinks />
         </div>
-        <DropdownMenuSeparator />
-        <DropdownMenuItem>
+
+        {/* Sign out section */}
+        <div className="border-t border-border/50 p-2">
           <SignOut />
-        </DropdownMenuItem>
-      </DropdownMenuContent>
-    </DropdownMenu>
+        </div>
+      </PopoverContent>
+    </Popover>
   );
 }

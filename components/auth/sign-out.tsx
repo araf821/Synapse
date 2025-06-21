@@ -6,10 +6,10 @@ export function SignOut() {
     <form action={signOutAction} className="w-full">
       <button
         type="submit"
-        className="group flex w-full items-center rounded-sm px-2 py-1.5 text-sm hover:bg-accent"
+        className="flex w-full items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium text-muted-foreground transition-colors hover:bg-muted/50 hover:text-foreground"
       >
-        <LogOut className="mr-2 size-4 group-hover:text-white" />
-        <span className="font-medium">Sign Out</span>
+        <LogOut className="size-4" />
+        <span>Sign Out</span>
       </button>
     </form>
   );
