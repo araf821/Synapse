@@ -23,7 +23,7 @@ export function NavigationLinks({ onLinkClick }: NavigationLinksProps) {
             className={`flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-colors ${
               isActive
                 ? "bg-primary/10 text-primary"
-                : "text-muted-foreground hover:bg-muted/50 hover:text-foreground"
+                : "text-muted-foreground hover:bg-muted/70 hover:text-foreground"
             }`}
           >
             <link.icon className="size-4" />

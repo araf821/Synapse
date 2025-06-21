@@ -3,6 +3,7 @@ import {
   CreditCard,
   Settings,
   DollarSign,
+  Palette,
 } from "lucide-react";
 
 export interface NavigationLink {
@@ -17,6 +18,11 @@ export const dashboardNavigation: NavigationLink[] = [
     href: "/dashboard",
     label: "Dashboard",
     icon: LayoutDashboard,
+  },
+  {
+    href: "/templates",
+    label: "Templates",
+    icon: Palette,
   },
   {
     href: "/pricing",
