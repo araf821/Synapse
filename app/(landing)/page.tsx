@@ -1,12 +1,16 @@
 import { Navbar } from "@/components/layout/navbar";
+import { Hero } from "@/components/landing/sections/hero";
+import { ProblemQuote } from "@/components/landing/sections/problem-quote";
 
 const LandingPage = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
 
-      {/* TODO: Hero Section - "Stop Getting Answers. Start Building Arguments." */}
-      {/* TODO: Problem Quote Section - MIT Technology Review quote */}
+      <Hero />
+
+      <ProblemQuote />
+
       {/* TODO: Solution Section - "From Raw Idea to Battle-Tested Argument" with 3 steps */}
       {/* TODO: Features Grid - 4 benefits with icons */}
       {/* TODO: FAQ Section - Accordion with 5 questions */}

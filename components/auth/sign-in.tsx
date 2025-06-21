@@ -1,13 +1,8 @@
-import { signIn } from "@/auth";
+import { signInWithGoogle, signInWithDiscord } from "@/server/actions/auth";
 
 export function SignInGoogle() {
   return (
-    <form
-      action={async () => {
-        "use server";
-        await signIn("google");
-      }}
-    >
+    <form action={signInWithGoogle}>
       <button
         type="submit"
         className="flex items-center gap-2 rounded-md bg-white px-4 py-2 text-sm font-medium text-gray-900 shadow-sm ring-1 ring-gray-300 hover:bg-gray-50 focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 focus:outline-none"
@@ -38,12 +33,7 @@ export function SignInGoogle() {
 
 export function SignInDiscord() {
   return (
-    <form
-      action={async () => {
-        "use server";
-        await signIn("discord");
-      }}
-    >
+    <form action={signInWithDiscord}>
       <button
         type="submit"
         className="flex items-center gap-2 rounded-md bg-[#5865F2] px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-[#4752C4] focus:ring-2 focus:ring-[#5865F2] focus:ring-offset-2 focus:outline-none"
