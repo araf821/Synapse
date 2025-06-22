@@ -13,6 +13,7 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import { Button } from "../ui/button";
+import { RainbowButton } from "@/components/ui/rainbow-button";
 import { dashboardNavigation } from "@/config/navigation";
 
 interface DashboardNavbarProps {
@@ -80,43 +81,48 @@ export function DashboardNavbar({ user }: DashboardNavbarProps) {
 
           {/* Action Buttons & User - Right */}
           <div className="flex items-center space-x-4">
-            {/* New Synthesis CTA */}
-            {/* <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Link href="/synthesis/new">
-                    <RainbowButton className="hidden h-9 px-6 text-sm sm:inline-flex">
-                      <Plus className="mr-2 size-4" />
-                      New Synthesis
-                    </RainbowButton>
-                  </Link>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>Start a new cognitive challenge</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider> */}
+            {/* New Synthesis CTA - Show on all pages except /dashboard */}
+            {pathname !== "/dashboard" && (
+              <>
+                {/* Desktop New Synthesis Button */}
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Link href="/synthesis/new">
+                        <RainbowButton className="hidden h-9 px-6 text-sm sm:inline-flex">
+                          <Plus className="mr-2 size-4" />
+                          New Synthesis
+                        </RainbowButton>
+                      </Link>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>Start a new cognitive challenge</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
 
-            {/* Mobile New Synthesis Button */}
-            <TooltipProvider>
-              <Tooltip>
-                <TooltipTrigger asChild>
-                  <Button
-                    size="sm"
-                    variant="default"
-                    className="sm:hidden"
-                    asChild
-                  >
-                    <Link href="/synthesis/new">
-                      <Plus className="size-4" />
-                    </Link>
-                  </Button>
-                </TooltipTrigger>
-                <TooltipContent>
-                  <p>New Synthesis</p>
-                </TooltipContent>
-              </Tooltip>
-            </TooltipProvider>
+                {/* Mobile New Synthesis Button */}
+                <TooltipProvider>
+                  <Tooltip>
+                    <TooltipTrigger asChild>
+                      <Button
+                        size="sm"
+                        variant="default"
+                        className="sm:hidden"
+                        asChild
+                      >
+                        <Link href="/synthesis/new">
+                          <Plus className="size-4" />
+                        </Link>
+                      </Button>
+                    </TooltipTrigger>
+                    <TooltipContent>
+                      <p>New Synthesis</p>
+                    </TooltipContent>
+                  </Tooltip>
+                </TooltipProvider>
+              </>
+            )}
 
             {/* User Profile Dropdown */}
             <UserButton user={user} />
