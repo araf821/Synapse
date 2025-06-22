@@ -316,8 +316,8 @@ export function FinalSynthesisEditor({
       {/* Help Text */}
       <p className="text-center text-sm text-balance text-muted-foreground">
         Your final synthesis should demonstrate how your thinking has evolved
-        through the challenge process. Show how you've addressed weaknesses and
-        strengthened your argument.
+        through the challenge process. Show how you&apos;ve addressed weaknesses
+        and strengthened your argument.
       </p>
 
       <SynapseIcon className="mx-auto size-12 text-primary" />

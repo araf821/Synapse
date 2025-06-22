@@ -120,8 +120,8 @@ export function Solution() {
               </h3>
               <p className="max-w-xs font-sans text-base leading-relaxed text-muted-foreground sm:text-lg">
                 Forge a new, stronger argument by synthesizing your original
-                thoughts with your responses to the AI's challenges. This is the
-                creative leap only a human can make.
+                thoughts with your responses to the AI&apos;s challenges. This
+                is the creative leap only a human can make.
               </p>
             </motion.div>
           </div>

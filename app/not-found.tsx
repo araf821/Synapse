@@ -224,7 +224,7 @@ export default function NotFound() {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.3 }}
           >
-            Let's Navigate Back.
+            Let{"'"}s Navigate Back.
           </motion.span>
         </motion.h1>
 

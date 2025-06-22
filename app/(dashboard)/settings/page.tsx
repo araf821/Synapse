@@ -8,7 +8,6 @@ import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import {
   User,
-  Mail,
   Shield,
   Bell,
   Palette,
@@ -32,7 +31,7 @@ function SettingsSection({
 }: {
   title: string;
   description: string;
-  icon: any;
+  icon: React.ComponentType<{ className?: string }>;
   children: React.ReactNode;
 }) {
   return (
@@ -313,8 +312,8 @@ export default async function SettingsPage() {
                 <div className="flex items-center gap-2 text-sm text-muted-foreground">
                   <AlertCircle className="size-4" />
                   <span>
-                    Preference customization is coming soon. We're building a
-                    comprehensive settings system.
+                    Preference customization is coming soon. We{"'"}re building
+                    a comprehensive settings system.
                   </span>
                 </div>
               </div>

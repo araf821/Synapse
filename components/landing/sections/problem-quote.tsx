@@ -47,7 +47,7 @@ export function ProblemQuote() {
             transition={{ duration: 0.6, delay: 0.3 }}
           >
             {" "}
-            that compounds over time."
+            that compounds over time.{'"'}
           </motion.span>
         </motion.blockquote>
 

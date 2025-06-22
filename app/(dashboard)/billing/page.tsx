@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { auth } from "@/auth";
-import { redirect } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -10,16 +8,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
   CreditCard,
-  Calendar,
-  DollarSign,
   Bell,
   Check,
-  Zap,
   Crown,
-  Rocket,
   Mail,
-  AlertCircle,
-  Clock,
   Sparkles,
   Star,
   ArrowRight,
@@ -168,9 +160,11 @@ function NotificationSignup() {
             <Check className="size-6 text-green-600" />
           </div>
           <div className="flex-1">
-            <h3 className="font-semibold text-green-900">You're all set!</h3>
+            <h3 className="font-semibold text-green-900">
+              You{"'"}re all set!
+            </h3>
             <p className="text-green-700">
-              We'll notify you as soon as subscription plans are available.
+              We&apos;ll notify you as soon as subscription plans are available.
               Thanks for being part of the cognitive revolution!
             </p>
           </div>
@@ -233,7 +227,7 @@ function NotificationSignup() {
           </Button>
 
           <p className="text-xs text-muted-foreground">
-            We'll only email you about pricing updates. No spam, ever.
+            We&apos;ll only email you about pricing updates. No spam, ever.
           </p>
         </form>
       </CardContent>
@@ -279,7 +273,7 @@ export default function BillingPage() {
               </div>
               <div className="flex-1">
                 <h3 className="font-semibold text-amber-900">
-                  We're in Early Development
+                  We&apos;re in Early Development
                 </h3>
                 <p className="text-amber-700">
                   Synapse is currently in beta, and all features are free while
@@ -382,9 +376,9 @@ export default function BillingPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  We're targeting Q4 2025 for the launch of subscription plans.
-                  Current beta users will receive special early-bird pricing and
-                  grandfathered features.
+                  We&apos;re targeting Q4 2025 for the launch of subscription
+                  plans. Current beta users will receive special early-bird
+                  pricing and grandfathered features.
                 </p>
               </CardContent>
             </Card>
@@ -412,9 +406,9 @@ export default function BillingPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  We'll support all major credit cards, PayPal, and potentially
-                  cryptocurrency. Stripe will handle all payment processing for
-                  maximum security.
+                  We&apos;ll support all major credit cards, PayPal, and
+                  potentially cryptocurrency. Stripe will handle all payment
+                  processing for maximum security.
                 </p>
               </CardContent>
             </Card>
@@ -427,9 +421,9 @@ export default function BillingPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  Yes! We believe in the value we provide. You'll be able to
-                  cancel anytime with no hidden fees or complex processes. Just
-                  simple, honest billing.
+                  Yes! We believe in the value we provide. You&apos;ll be able
+                  to cancel anytime with no hidden fees or complex processes.
+                  Just simple, honest billing.
                 </p>
               </CardContent>
             </Card>

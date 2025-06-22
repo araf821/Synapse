@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import { auth } from "@/auth";
 import { redirect } from "next/navigation";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
@@ -295,7 +294,7 @@ export default async function TemplatesPage() {
                   Templates Coming Soon!
                 </h3>
                 <p className="text-amber-700">
-                  We're working with industry experts to create the most
+                  We&apos;re working with industry experts to create the most
                   effective cognitive challenges. Templates will be available in
                   our next major release.
                 </p>
