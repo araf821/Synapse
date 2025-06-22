@@ -26,6 +26,7 @@ export default auth((req: NextAuthRequest) => {
     "/terms",
     "/privacy",
     "/about",
+    "/pricing",
   ];
 
   // Check if the current path is public
