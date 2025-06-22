@@ -22,8 +22,10 @@ import {
   Clock,
   Sparkles,
   Star,
+  ArrowRight,
 } from "lucide-react";
 import { SynapseIcon } from "@/components/ui/synapse-icon";
+import Link from "next/link";
 
 // Mock billing data
 const currentPlan = {
@@ -41,54 +43,47 @@ const currentPlan = {
   nextBilling: null,
 };
 
-// Future pricing plans
+// Future pricing plans (simplified from actual pricing page)
 const upcomingPlans = [
   {
-    id: "starter",
-    name: "Cognitive Starter",
-    price: "$19",
-    period: "month",
-    description: "Perfect for individual thinkers building mental strength",
+    id: "free",
+    name: "Cognitive Explorer",
+    price: "Free",
+    period: "forever",
+    description: "Begin your journey of intellectual rigor",
     features: [
-      "Up to 50 synthesis sessions/month",
-      "Basic AI challenges",
-      "Progress analytics",
-      "Template library access",
-      "Email support",
+      "3 synthesis sessions per month",
+      "Basic AI challenge generation",
+      "Standard response analysis",
+      "Essential cognitive tools",
     ],
     recommended: false,
   },
   {
-    id: "professional",
-    name: "Deep Thinker Pro",
-    price: "$49",
+    id: "pro",
+    name: "Thought Architect",
+    price: "$7.99",
     period: "month",
-    description: "For professionals who depend on high-quality thinking",
+    description: "For serious thinkers who demand depth",
     features: [
       "Unlimited synthesis sessions",
-      "Advanced AI challenges",
-      "Detailed cognitive analytics",
-      "Priority template access",
-      "Custom challenge creation",
-      "API access",
-      "Priority support",
+      "Advanced multi-agent challenges",
+      "Deep reasoning analysis",
+      "Custom challenge difficulty",
     ],
     recommended: true,
   },
   {
     id: "enterprise",
-    name: "Enterprise Mind",
+    name: "Cognitive Collective",
     price: "Custom",
-    period: "pricing",
-    description: "For teams and organizations scaling cognitive excellence",
+    period: "per team",
+    description: "For organizations building thinking culture",
     features: [
       "Everything in Pro",
-      "Team collaboration features",
-      "Admin dashboard",
-      "Custom integrations",
-      "Dedicated success manager",
-      "On-site training",
-      "SLA guarantees",
+      "Team collaboration spaces",
+      "Organization-wide analytics",
+      "Custom AI model training",
     ],
     recommended: false,
   },
@@ -340,11 +335,19 @@ export default function BillingPage() {
           </Card>
         </div>
 
-        {/* Upcoming Plans */}
+        {/* Available Plans */}
         <div className="mb-12">
-          <h2 className="mb-6 font-serif text-2xl font-semibold text-foreground">
-            Upcoming Subscription Plans
-          </h2>
+          <div className="mb-6 flex items-center justify-between">
+            <h2 className="font-serif text-2xl font-semibold text-foreground">
+              Available Subscription Plans
+            </h2>
+            <Button variant="outline" asChild>
+              <Link href="/pricing">
+                View Full Pricing Details
+                <ArrowRight className="ml-2 size-4" />
+              </Link>
+            </Button>
+          </div>
 
           <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
             {upcomingPlans.map(plan => (
@@ -379,7 +382,7 @@ export default function BillingPage() {
               </CardHeader>
               <CardContent>
                 <p className="text-sm text-muted-foreground">
-                  We're targeting Q2 2025 for the launch of subscription plans.
+                  We're targeting Q4 2025 for the launch of subscription plans.
                   Current beta users will receive special early-bird pricing and
                   grandfathered features.
                 </p>
