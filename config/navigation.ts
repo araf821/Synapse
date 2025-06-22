@@ -44,15 +44,19 @@ export const dashboardNavigation: NavigationLink[] = [
 // Landing page navigation links (public)
 export const landingNavigation: NavigationLink[] = [
   {
-    href: "#how-it-works",
-    label: "How It Works",
+    href: "#solution",
+    label: "Solution",
   },
   {
-    href: "#pricing",
-    label: "Pricing",
+    href: "#features",
+    label: "Features",
   },
   {
     href: "#faq",
     label: "FAQ",
+  },
+  {
+    href: "#pricing",
+    label: "Pricing",
   },
 ];

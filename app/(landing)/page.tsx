@@ -12,13 +12,21 @@ const LandingPage = () => {
 
       <ProblemQuote />
 
-      <Solution />
+      <section id="solution">
+        <Solution />
+      </section>
 
-      <Features />
+      <section id="features">
+        <Features />
+      </section>
 
-      <FAQ />
+      <section id="faq">
+        <FAQ />
+      </section>
 
-      <FinalCTA />
+      <section id="pricing">
+        <FinalCTA />
+      </section>
     </>
   );
 };

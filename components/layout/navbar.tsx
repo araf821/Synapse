@@ -17,14 +17,34 @@ function NavLink({
   children: React.ReactNode;
   delay?: number;
 }) {
+  const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    // Check if it's a hash link (section navigation)
+    if (href.startsWith("#")) {
+      e.preventDefault();
+      const targetId = href.substring(1);
+      const targetElement = document.getElementById(targetId);
+
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }
+  };
+
   return (
     <motion.div
-      initial={{ opacity: 0, y: -10, filter: "blur(4px)" }}
-      animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+      initial={{ opacity: 0, filter: "blur(4px)" }}
+      animate={{ opacity: 1, filter: "blur(0px)" }}
       transition={{ duration: 0.5, delay, ease: "easeOut" }}
     >
-      <Link href={href} className="group relative px-1 py-2">
-        <span className="font-medium text-muted-foreground transition-colors duration-200 group-hover:scale-105 group-hover:text-foreground">
+      <Link
+        href={href}
+        onClick={handleClick}
+        className="group relative block px-3 py-2"
+      >
+        <span className="text-sm font-bold text-muted-foreground transition-all duration-200 group-hover:text-foreground">
           {children}
         </span>
         <div className="absolute bottom-0 left-1/2 h-0.5 w-0 -translate-x-1/2 rounded-full bg-primary transition-all duration-300 group-hover:w-full" />
@@ -74,7 +94,7 @@ export function Navbar() {
           </motion.div>
 
           {/* Navigation Links - Center */}
-          <nav className="hidden items-center justify-center space-x-8 md:flex">
+          <nav className="hidden items-center justify-center space-x-12 md:flex">
             {landingNavigation.map((link, index) => (
               <NavLink
                 key={link.href}
