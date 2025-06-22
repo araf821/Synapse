@@ -30,7 +30,8 @@ export default async function NewSynthesisPage() {
         <CardHeader>
           <CardTitle className="text-xl">Give your synthesis a title</CardTitle>
           <p className="text-sm text-muted-foreground">
-            Choose a meaningful title, or leave blank for "Untitled Synthesis"
+            Choose a meaningful title, or leave blank for &ldquo;Untitled
+            Synthesis&rdquo;
           </p>
         </CardHeader>
         <CardContent>

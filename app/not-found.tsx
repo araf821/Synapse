@@ -2,9 +2,8 @@
 
 import { motion } from "motion/react";
 import Link from "next/link";
-import { ArrowLeft, Search, Home } from "lucide-react";
+import { ArrowLeft, Home } from "lucide-react";
 import { SynapseIcon } from "@/components/ui/synapse-icon";
-import { RainbowButton } from "@/components/ui/rainbow-button";
 import { Button } from "@/components/ui/button";
 
 export default function NotFound() {
@@ -236,8 +235,8 @@ export default function NotFound() {
           animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
           transition={{ duration: 0.8, delay: 1.5, ease: "easeOut" }}
         >
-          The page you're looking for doesn't exist. But every detour is an
-          opportunity to discover something better.
+          The page you&apos;re looking for doesn&apos;t exist. But every detour
+          is an opportunity to discover something better.
         </motion.p>
 
         {/* Action Buttons */}

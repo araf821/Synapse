@@ -4,7 +4,6 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { User } from "next-auth";
 import { SynapseIcon } from "@/components/ui/synapse-icon";
-import { RainbowButton } from "@/components/ui/rainbow-button";
 import { UserButton } from "@/components/ui/user-button";
 import { Plus } from "lucide-react";
 import {

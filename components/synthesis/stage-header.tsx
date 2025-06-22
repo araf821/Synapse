@@ -1,5 +1,4 @@
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
 import { ArrowLeft } from "lucide-react";
 import Link from "next/link";
 
@@ -17,7 +16,6 @@ export function StageHeader({
   title,
   description,
   icon,
-  synthesisId,
   synthesisTitle,
 }: StageHeaderProps) {
   return (

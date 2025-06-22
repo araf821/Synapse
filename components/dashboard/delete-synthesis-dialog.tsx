@@ -6,7 +6,6 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
-  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -68,7 +67,7 @@ export function DeleteSynthesisDialog({
             <DialogDescription className="text-center font-sans text-base text-muted-foreground">
               Are you sure you want to delete{" "}
               <span className="font-medium text-foreground">
-                "{synthesisTitle}"
+                &ldquo;{synthesisTitle}&rdquo;
               </span>
               ? This action cannot be undone and all your work will be
               permanently lost.

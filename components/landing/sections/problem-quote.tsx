@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 
 export function ProblemQuote() {
   return (
-    <section className="bg-muted/30 px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
+    <section className="bg-muted/50 px-4 py-24 sm:px-6 sm:py-32 lg:px-8">
       <div className="mx-auto max-w-5xl text-center">
         {/* Quote */}
         <motion.blockquote
@@ -20,8 +20,8 @@ export function ProblemQuote() {
             viewport={{ once: true, margin: "0px 0px -100px 0px" }}
             transition={{ duration: 0.6, delay: 0.3 }}
           >
-            "Brain imaging revealed a decline in cognitive engagement in ChatGPT
-            users... a{" "}
+            &ldquo;Brain imaging revealed a decline in cognitive engagement in
+            ChatGPT users... a{" "}
           </motion.span>
           <motion.span
             className="inline-block font-semibold text-primary"
@@ -38,7 +38,7 @@ export function ProblemQuote() {
               ease: "easeOut",
             }}
           >
-            'cognitive debt'
+            &lsquo;cognitive debt&rsquo;
           </motion.span>
           <motion.span
             initial={{ opacity: 0, filter: "blur(6px)" }}

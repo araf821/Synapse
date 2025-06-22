@@ -14,8 +14,8 @@ export function EmptyState() {
       </h3>
 
       <p className="mb-8 max-w-lg text-muted-foreground">
-        You haven't started any syntheses yet. Ready to challenge your thinking?
-        Create your first synthesis and begin the journey through our
+        You haven&apos;t started any syntheses yet. Ready to challenge your
+        thinking? Create your first synthesis and begin the journey through our
         three-stage gauntlet.
       </p>
 

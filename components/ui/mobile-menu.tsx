@@ -65,10 +65,12 @@ export function MobileMenu({ user, open, onOpenChange }: MobileMenuProps) {
             <div className="flex items-center space-x-4">
               <div className="flex size-12 items-center justify-center rounded-full bg-background">
                 {user.image ? (
-                  <img
+                  <Image
                     src={user.image}
                     alt={user.name || "User"}
                     className="size-12 rounded-full object-cover"
+                    width={48}
+                    height={48}
                   />
                 ) : (
                   <UserIcon className="size-6 text-muted-foreground" />

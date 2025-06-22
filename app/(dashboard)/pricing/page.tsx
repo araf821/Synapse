@@ -1,8 +1,6 @@
 "use client";
 
 import { motion } from "motion/react";
-import { getCurrentUser } from "@/server/lib/auth";
-import { redirect } from "next/navigation";
 import { RainbowButton } from "@/components/ui/rainbow-button";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -388,7 +386,7 @@ export default function PricingPage() {
                     ))}
                   </div>
                   <p className="mb-4 text-muted-foreground italic">
-                    "{testimonial.content}"
+                    &ldquo;{testimonial.content}&rdquo;
                   </p>
                   <div>
                     <p className="font-medium text-foreground">
