@@ -36,6 +36,8 @@ const pricingTiers = [
       "Essential cognitive tools",
       "Community access",
       "Progress tracking",
+      "Basic templates library",
+      "Email support",
     ],
     cta: "Start Exploring",
     popular: false,
@@ -232,8 +234,8 @@ export default function PricingPage() {
                 ease: "easeOut",
               }}
               whileHover={{
-                scale: 1.02,
-                transition: { duration: 0.2 },
+                scale: 1.01,
+                transition: { duration: 0.15 },
               }}
             >
               {tier.popular && (
@@ -251,22 +253,22 @@ export default function PricingPage() {
               )}
 
               <Card
-                className={`relative h-full overflow-hidden transition-all duration-300 ${
+                className={`relative h-full overflow-hidden transition-all duration-200 ${
                   tier.popular
-                    ? "border-accent/50 bg-card/90 shadow-xl shadow-accent/10"
+                    ? "border-accent/50 bg-card/90 shadow-lg shadow-accent/5"
                     : "border-border/30 bg-card/70 hover:border-border/50"
-                } backdrop-blur-sm group-hover:shadow-2xl`}
+                } backdrop-blur-sm group-hover:shadow-lg`}
               >
                 {/* Animated gradient background */}
                 <div
-                  className={`absolute inset-0 bg-gradient-to-br ${tier.color} opacity-0 transition-opacity duration-500 group-hover:opacity-100`}
+                  className={`absolute inset-0 bg-gradient-to-br ${tier.color} opacity-0 transition-opacity duration-300 group-hover:opacity-80`}
                 />
 
                 <CardHeader className="relative z-10 pb-8 text-center">
                   <motion.div
                     className="mb-4 flex justify-center"
-                    whileHover={{ rotate: 5, scale: 1.1 }}
-                    transition={{ duration: 0.2 }}
+                    whileHover={{ rotate: 3, scale: 1.05 }}
+                    transition={{ duration: 0.15 }}
                   >
                     <div
                       className={`rounded-2xl border p-4 ${tier.borderColor} ${tier.popular ? "bg-accent/10" : "bg-muted/50"} `}
@@ -317,8 +319,8 @@ export default function PricingPage() {
                   </ul>
 
                   <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    whileTap={{ scale: 0.98 }}
+                    whileHover={{ scale: 1.01 }}
+                    whileTap={{ scale: 0.99 }}
                   >
                     {tier.id === "free" ? (
                       <LoginDialog
