@@ -80,7 +80,7 @@ export function SynthesisCard({ synthesis }: SynthesisCardProps) {
   const isTitleLong = synthesis.title.length > titleCharLimit;
 
   return (
-    <Card className="group relative overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-200 hover:border-border hover:bg-card/80 hover:shadow-md">
+    <Card className="group relative h-full overflow-hidden border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-200 hover:border-border hover:bg-card/80 hover:shadow-md">
       <CardHeader>
         <div className="flex gap-4 overflow-hidden">
           <div className="min-w-0 flex-1 overflow-hidden">

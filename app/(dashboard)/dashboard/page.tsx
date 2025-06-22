@@ -3,8 +3,7 @@ import { redirect } from "next/navigation";
 import { db } from "@/server/db";
 import { synthesesTable } from "@/server/db/schema";
 import { eq, desc } from "drizzle-orm";
-import { SynthesisCard } from "@/components/dashboard/synthesis-card";
-import { EmptyState } from "@/components/dashboard/empty-state";
+import { SynthesisGrid } from "@/components/dashboard/synthesis-grid";
 import { DashboardStats } from "@/components/dashboard/dashboard-stats";
 import { WelcomeSection } from "@/components/dashboard/welcome-section";
 
@@ -57,15 +56,7 @@ const DashboardPage = async () => {
           )}
         </div>
 
-        {userSyntheses.length === 0 ? (
-          <EmptyState />
-        ) : (
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {userSyntheses.map(synthesis => (
-              <SynthesisCard key={synthesis.id} synthesis={synthesis} />
-            ))}
-          </div>
-        )}
+        <SynthesisGrid syntheses={userSyntheses} />
       </div>
     </div>
   );
