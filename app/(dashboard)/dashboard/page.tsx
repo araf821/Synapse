@@ -6,6 +6,10 @@ import { eq, desc } from "drizzle-orm";
 import { SynthesisGrid } from "@/components/dashboard/synthesis-grid";
 import { DashboardStats } from "@/components/dashboard/dashboard-stats";
 import { WelcomeSection } from "@/components/dashboard/welcome-section";
+import { generatePageMetadata } from "@/config/site";
+import { Metadata } from "next";
+
+export const metadata: Metadata = generatePageMetadata("dashboard");
 
 const DashboardPage = async () => {
   const user = await getCurrentUser();
