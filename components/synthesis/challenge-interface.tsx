@@ -18,6 +18,7 @@ import { Synthesis, Challenge } from "@/server/db/schema";
 import {
   generateChallenges,
   saveChallengeResponse,
+  saveAllChallengeResponses,
   progressToStage3,
 } from "@/server/actions/synthesis";
 import { useRouter } from "next/navigation";
@@ -69,9 +70,6 @@ export function ChallengeInterface({
   const router = useRouter();
 
   const hasNoChallenges = challenges.length === 0;
-  const allResponsesComplete =
-    challenges.length > 0 &&
-    challenges.every(challenge => responses[challenge.id]?.trim().length > 0);
 
   const handleGenerateChallenges = async () => {
     setIsGenerating(true);
@@ -105,6 +103,19 @@ export function ChallengeInterface({
   const handleProgressToStage3 = () => {
     startTransition(async () => {
       try {
+        // First, save all responses automatically
+        const responsesToSave = challenges
+          .map(challenge => ({
+            challengeId: challenge.id,
+            userResponse: responses[challenge.id] || "",
+          }))
+          .filter(response => response.userResponse.trim().length > 0);
+
+        if (responsesToSave.length > 0) {
+          await saveAllChallengeResponses(synthesisId, responsesToSave);
+        }
+
+        // Then progress to stage 3
         await progressToStage3(synthesisId);
         router.push(`/synthesis/${synthesisId}/stage3`);
       } catch (error) {
@@ -239,7 +250,7 @@ export function ChallengeInterface({
                     disabled={isPending || !responses[challenge.id]?.trim()}
                   >
                     <Save className="mr-2 size-3" />
-                    Save Response
+                    Save Draft
                   </Button>
                 </div>
               </div>
@@ -264,13 +275,13 @@ export function ChallengeInterface({
             </div>
             <Button
               onClick={handleProgressToStage3}
-              disabled={isPending || !allResponsesComplete}
+              disabled={isPending}
               size="lg"
             >
               {isPending ? (
                 <>
                   <Loader2 className="mr-2 size-5 animate-spin" />
-                  Processing...
+                  Saving & Processing...
                 </>
               ) : (
                 <>
@@ -279,11 +290,9 @@ export function ChallengeInterface({
                 </>
               )}
             </Button>
-            {!allResponsesComplete && (
-              <p className="text-sm text-muted-foreground">
-                Complete all challenge responses to proceed
-              </p>
-            )}
+            <p className="text-sm text-muted-foreground">
+              Your responses will be automatically saved when you proceed
+            </p>
           </div>
         </CardContent>
       </Card>

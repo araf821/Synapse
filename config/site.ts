@@ -37,8 +37,8 @@ export const siteConfig = {
   manifest: "/site.webmanifest",
   icons: {
     icon: "/favicon.ico",
-    shortcut: "/favicon-16x16.png",
-    apple: "/apple-touch-icon.png",
+    shortcut: "/favicon.ico",
+    apple: "/apple-icon.png",
   },
   verification: {
     google: "", // Add Google Search Console verification code
