@@ -1,0 +1,44 @@
+<svg width="200" height="200" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+        <!-- Primary gradient using the earthen clay color scheme -->
+        <linearGradient id="synapse-primary-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <!-- Primary color: burnt sienna/terracotta -->
+            <stop offset="0%" stop-color="oklch(0.52 0.12 35)" stop-opacity="1" />
+            <!-- Slightly more orange/terracotta variation -->
+            <stop offset="100%" stop-color="oklch(0.48 0.1 25)" stop-opacity="0.8" />
+        </linearGradient>
+
+        <!-- Alternative gradient for variations -->
+        <linearGradient id="synapse-accent-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+            <stop offset="0%" stop-color="oklch(0.52 0.12 35)" stop-opacity="1" />
+            <stop offset="50%" stop-color="oklch(0.55 0.06 245)" stop-opacity="0.9" />
+            <stop offset="100%" stop-color="oklch(0.52 0.12 35)" stop-opacity="0.7" />
+        </linearGradient>
+    </defs>
+
+    <!-- The synapse connection curve -->
+    <path
+        d="M 15 50 C 35 80, 65 20, 85 50"
+        stroke="url(#synapse-primary-gradient)"
+        stroke-width="6"
+        stroke-linecap="round"
+        fill="none"
+    />
+
+    <!-- Start Node - primary color -->
+    <circle
+        cx="15"
+        cy="50"
+        r="10"
+        fill="oklch(0.52 0.12 35)"
+    />
+
+    <!-- End Node - slightly transparent with orange tint -->
+    <circle
+        cx="85"
+        cy="50"
+        r="10"
+        fill="oklch(0.48 0.1 25)"
+        fill-opacity="0.8"
+    />
+</svg>
