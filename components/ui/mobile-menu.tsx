@@ -9,6 +9,7 @@ import {
   Sheet,
   SheetContent,
   SheetHeader,
+  SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
 import Image from "next/image";
@@ -41,14 +42,17 @@ export function MobileMenu({ user, open, onOpenChange }: MobileMenuProps) {
           )}
         </button>
       </SheetTrigger>
-      <SheetContent side="top" className="h-full w-full border-none p-0">
+      <SheetContent
+        side="top"
+        className="h-full w-full border-none p-0 lg:hidden"
+      >
         {/* Header with logo and close button */}
         <SheetHeader className="flex-row items-center justify-between border-b border-border/40 bg-background/80 px-6 py-4 backdrop-blur-sm">
           <div className="flex items-center space-x-3">
             <SynapseIcon className="size-7 text-primary" />
-            <span className="font-display text-xl font-bold tracking-tight text-foreground">
+            <SheetTitle className="font-display text-xl font-bold tracking-tight text-foreground">
               Synapse
-            </span>
+            </SheetTitle>
           </div>
           <button
             onClick={() => onOpenChange(false)}
